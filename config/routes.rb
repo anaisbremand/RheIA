@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   # get 'posts/update'
   # get 'posts/destroy'
   devise_for :users
-  root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "posts#new"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
   resources :posts
+  get 'drafts', to:'posts#drafts', as:'posts/drafts'
+  get 'historique', to:'posts#historique', as:'posts/historique'
+  get 'publish/:id', to:'posts#publish', as:'posts/publish'
 end
