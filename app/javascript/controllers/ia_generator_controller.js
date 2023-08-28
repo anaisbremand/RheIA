@@ -5,12 +5,11 @@ export default class extends Controller {
   static targets = ["form", "prompt"]
 
   connect() {
-    console.log(this.formTarget);
-    const demande = this.promptTarget;
-    console.log(demande);
   }
 
   generate() {
+    const prompt = this.promptTarget.value;
+    console.log(prompt);
     // console.log("Salut");
     // const url = "https://api.openai.com/v1/chat/completions";
     // const apiKey = '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';

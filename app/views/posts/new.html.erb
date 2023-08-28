@@ -12,7 +12,7 @@
     <h1>Votre prochaine publication Instagram</h1>
     <div class = "w-50 mt-4">
       <%= simple_form_for @post, html: { data: {controller: "ia-generator", ia_generator_target: "form"} } do |f| %>
-        <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ', , input_html: { data: {ia_generator_target: "prompt"}} %>
+        <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ', input_html: { data: {ia_generator_target: "prompt"}} %>
         <%= f.input :photos, as: :file, input_html: {multiple: true} %>
         <div class="text-center mt-4">
         <%= f.submit "Générer votre post" %>
