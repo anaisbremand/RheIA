@@ -6,5 +6,17 @@
 .enonce{
   max-width: 50%;
   margin:0, auto;
-  text-align: center
+  text-align: center;
+}
+
+
+.body-form{
+  display: flex;
+  justify-content: center;
+
+}
+
+.form-text{
+  display:flex;
+  justify-content: center;
 }
