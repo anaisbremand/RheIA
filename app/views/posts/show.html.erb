@@ -1,3 +1,12 @@
+
+<nav class="breadcrumb infos-card">
+    <ul>
+        <li class="breadcrumb_inactive">Générateur de post</li>
+        <li class="breadcrumb_active">Modification</li>
+        <li class="breadcrumb_inactive">Publication</li>
+    </ul>
+</nav>
+
 <h1>Votre post</h1>
 
 <%= @post.prompt %>
@@ -12,3 +21,4 @@
     <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
   </div>
 <% end %>
+

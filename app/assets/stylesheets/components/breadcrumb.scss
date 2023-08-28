@@ -1,0 +1,30 @@
+.breadcrumb {
+  display: flex;
+  padding: 0 1em 0 2em;
+  justify-content: center;
+  text-align: center;
+}
+
+.breadcrumb ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li {
+  display: inline-block;
+  margin: 3rem;
+  content: "\276F";
+}
+
+.breadcrumb_active{
+  text-decoration: none;
+  color: #6c2ba2
+}
+
+.breadcrumb_inactive{
+  text-decoration: none;
+  color: #504e51
+}
