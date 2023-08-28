@@ -1,0 +1,6 @@
+<h1>Mon historique de post</h1>
+  <% @historique.each do |post| %>
+    <%= post.prompt %>
+  <% end %>
+<%= link_to "Générer un autre post", new_post_path %>
+<%= link_to "Voir mes posts sauvegardés", posts_drafts_path %>

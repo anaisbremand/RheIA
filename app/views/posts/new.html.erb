@@ -1,3 +1,4 @@
+
 <nav class="breadcrumb infos-card">
     <ul>
         <li class="breadcrumb_active">Générateur de post &#10148</li>
@@ -6,5 +7,10 @@
     </ul>
 </nav>
 
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>Générer un post</h1>
+<%= simple_form_for @post do |f| %>
+  <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ' %>
+  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+  <%= f.submit "Générer votre post" %>
+  <% end %>
+
