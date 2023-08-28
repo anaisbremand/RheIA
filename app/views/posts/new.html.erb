@@ -8,9 +8,12 @@
 </nav>
 
 <h1>Générer un post</h1>
-<%= simple_form_for @post do |f| %>
-  <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ' %>
-  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
-  <%= f.submit "Générer votre post" %>
-  <% end %>
+<div>
 
+  <%= simple_form_for @post, html: { data: {controller: "ia-generator", ia_generator_target: "form"} } do |f| %>
+    <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici', input_html: { data: {ia_generator_target: "prompt"}} %>
+    <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+    <%= f.submit "Générer votre post", html: {data: {action: "submit->ia-generator#generate"}} %>
+    <% end %>
+
+</div>
