@@ -1,2 +1,8 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>Votre post</h1>
+
+<%= @post.prompt %>
+
+<%= link_to "Publier", posts_publish_path(@post) %>
+<%= link_to "🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"} %>
+<%= link_to "Sauvegarder", posts_drafts_path %>
+<%= link_to "Programmer", new_post_path %>
