@@ -1,6 +1,13 @@
 <h1>Mes posts sauvegardés</h1>
   <% @drafts.each do |post| %>
     <%= post.prompt %>
+    <% post.photos.each do |photo| %>
+      <div class="p-1">
+        <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
+      </div>
+    <% end %>
+    <%= link_to "Supprimer ce post 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"} %>
   <% end %>
+
 <%= link_to "Générer un autre post", new_post_path %>
 <%= link_to "Voir mon historique", posts_historique_path %>
