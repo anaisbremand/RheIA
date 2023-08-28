@@ -1,6 +1,6 @@
 <h1>Générer un post</h1>
 <%= simple_form_for @post do |f| %>
   <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ' %>
-  <%# <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
   <%= f.submit "Générer votre post" %>
   <% end %>

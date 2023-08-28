@@ -6,3 +6,9 @@
 <%= link_to "🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"} %>
 <%= link_to "Sauvegarder", posts_drafts_path %>
 <%= link_to "Programmer", new_post_path %>
+
+<% @post.photos.each do |photo| %>
+  <div class="p-1">
+    <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
+  </div>
+<% end %>
