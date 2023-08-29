@@ -6,16 +6,15 @@
     <% end %></li>
     <li><%= link_to "Générateur de post", new_post_path %></li>
     <li><% if current_user %>
-          <%= link_to "Dashboard", root_path %>
+          <%= link_to "Dashboard", new_user_session_path %>
         <% end %>
       <ul class='sub-menus'>
         <li><%= link_to "Générateur de posts", new_post_path %></li>
-        <li><%= link_to "Mes posts sauvegardés", root_path %></li>
-        <li><%= link_to "Générateur d'idées ",  root_path %></li>
-        <li> <%= link_to "Historique des posts", root_path%>
-        <li><%= link_to "Mes statistiques ",  root_path %></li>
+        <li><%= link_to "Mes posts sauvegardés", posts_drafts_path %></li>
+        <li><%= link_to "Générateur d'idées ",  new_user_session_path %></li>
+        <li> <%= link_to "Historique des posts", posts_historique_path%>
+        <li><%= link_to "Mes statistiques ",  new_user_session_path %></li>
        </ul>
     </li>
-
   </ul>
 </nav>

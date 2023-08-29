@@ -76,8 +76,9 @@
 }
 #menu ul.sub-menus a {
   color: #000000;
-  font-size: 16px;
+  font-size: 11px;
   text-transform: capitalize;
+  line-height: 3em;
 }
 #menu li:hover ul.sub-menus {
   display: block

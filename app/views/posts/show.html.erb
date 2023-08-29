@@ -1,8 +1,8 @@
 
 <nav class="breadcrumb infos-card">
     <ul>
-        <li class="breadcrumb_inactive">Générateur de post</li>
-        <li class="breadcrumb_active">Modification</li>
+        <li class="breadcrumb_inactive">Générateur de post &#10148</li>
+        <li class="breadcrumb_active">Modification &#10148</li>
         <li class="breadcrumb_inactive">Publication</li>
     </ul>
 </nav>
@@ -12,7 +12,7 @@
 <%= @post.prompt %>
 
 <%= link_to "Publier", posts_publish_path(@post) %>
-<%= link_to "🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"} %>
+<%= link_to "Supprimer 🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"} %>
 <%= link_to "Sauvegarder", posts_drafts_path %>
 <%= link_to "Programmer", new_post_path %>
 
@@ -21,4 +21,3 @@
     <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
   </div>
 <% end %>
-
