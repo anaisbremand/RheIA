@@ -2,11 +2,19 @@
   box-shadow: 0px 0px 8px 0px #d3d3d3;
 }
 
-.flex-container {
+// .flex-container {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+//   justify-content: center;
+//   align-items: stretch;
+//   align-content: stretch;
+// }
+
+.infos-buttons {
+  text-align: center;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: stretch;
-  align-content: stretch;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
