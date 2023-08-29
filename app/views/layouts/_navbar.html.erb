@@ -1,12 +1,12 @@
-<nav id='menu'>
+<nav id='menu' class="bg-dark">
   <%# <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label> %>
   <ul>
     <li><%= link_to "#", class: "navbar-brand" do%>
-      <%= image_tag "logo_rheIA.png" %>
+      <%= image_tag "logo_rheIA.svg" %>
     <% end %></li>
     <li><%= link_to "Générateur de post", new_post_path %></li>
     <li><% if current_user %>
-          <%= link_to "👤", new_user_session_path %>
+          <%= link_to "Dashboard", new_user_session_path %>
         <% end %>
       <ul class='sub-menus'>
         <li><%= link_to "Générateur de posts", new_post_path %></li>
