@@ -1,9 +1,8 @@
 .navbar-brand img {
-  width: 80px;
+  width: 180px;
 }
 
 #menu {
-  background: #FFFFFF;
   color: #FFF;
   height: 64px;
   padding-left: 18px;
@@ -29,7 +28,7 @@
   line-height: 64px;
   padding: 0 14px;
   text-decoration: none;
-  color: #000000;
+  color: white;
   font-size: 16px;
   text-transform: capitalize;
 }
@@ -38,7 +37,7 @@
   margin-left: 5px;
 }
 #menu li a:hover {
-  color: #333333;
+  color: white;
   background: #FFFFFF;
 }
 #menu input {
