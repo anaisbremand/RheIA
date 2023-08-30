@@ -5,15 +5,13 @@ export default class extends Controller {
   static targets = ["prompt", "description", "id"]
 
 
+
   connect() {
     console.log("Controller Stimulus bien démarré !");
     // console.log(this.promptTarget);
     console.log(this.promptTarget.innerText);
-
-
-
-
   }
+
 
   generate() {
 

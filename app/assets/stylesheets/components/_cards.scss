@@ -25,10 +25,15 @@
 }
 
 .carousel-card {
-  width: 500px;
   img {
     width: 100%;
     object-fit: cover;
     object-position: center;
   }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
 }

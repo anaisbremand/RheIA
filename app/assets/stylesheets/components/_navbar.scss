@@ -74,14 +74,15 @@
   margin-left: 20px;
 }
 #menu ul.sub-menus{
-  justify-content: end;
+  justify-content: center;
   height: 300px;
   overflow: hidden;
   width: 200px;
   background: #212529;
-  z-index: 99;
+  z-index: 1000 !important;
   display: none;
   border-radius: 5px;
+  position: absolute;
   }
 #menu ul.sub-menus li {
   display: block;

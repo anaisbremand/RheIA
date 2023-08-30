@@ -3,6 +3,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+
+    # respond_to do |format|
+    #   if @post.save
+    #     format.html { redirect_to post_path(@post) }
+    #     format.json
+    #   else
+    #     format.html { render "posts/show", status: :unprocessable_entity }
+    #     format.json
+    #   end
+    # end
   end
 
   def show
@@ -13,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-      redirect_to passerelle_post_path(@post), flash: { post_id: @post.id }
+      redirect_to passerelle_post_path(@post)
     else
       # Gestion des erreurs, par exemple réafficher le formulaire
       render json: { errors: @post.errors.full_messages }, status: 422
