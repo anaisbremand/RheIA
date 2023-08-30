@@ -1,13 +1,50 @@
-<h1>Mes posts sauvegardés</h1>
-  <% @drafts.each do |post| %>
-    <%= post.prompt %>
-    <% post.photos.each do |photo| %>
-      <div class="p-1">
-        <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
-      </div>
-    <% end %>
-    <%= link_to "Supprimer ce post 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"} %>
-  <% end %>
+<div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
+  <h1>Mes posts sauvegardés</h1>
+    <div class = "container w-70 mt-4 d-flex f-row">
+      <% @drafts.each_with_index do |post, index| %>
+        <div class="card carousel-card m-3">
 
-<%= link_to "Générer un autre post", new_post_path %>
-<%= link_to "Voir mon historique", posts_historique_path %>
+        <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide">
+          <div class="carousel-indicators">
+            <% if post.photos.length > 1 %>
+              <% post.photos.each_with_index do |photo, index| %>
+                <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="carousel-inner">
+            <% post.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                  <%= cl_image_tag photo.key %>
+                </div>
+            <% end %>
+          </div>
+          <% if post.photos.length > 1 %>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          <% end %>
+        </div>
+        <div class="d-flex column">
+          <%= "❤️ 💬 ✉️ ⏺️" %>
+          <%= "XXX J'aime" %>
+        </div>
+        <%= post.user.email %>
+        <%= post.prompt %>
+      <div class="text-center m-3 btn-outline-danger">
+        <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
+      </div>
+        </div>
+      <% end %>
+
+    </div>
+      <div class="text-center">
+        <%= link_to "Générer un autre post", new_post_path, class:"button-valider m-3" %>
+        <%= link_to "Voir mon historique", posts_historique_path, class:"button-valider" %>
+      </div>
+</div>

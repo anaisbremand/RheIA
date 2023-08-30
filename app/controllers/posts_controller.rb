@@ -25,15 +25,15 @@ class PostsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @post = Post.find(params[:id])
-  # end
+  def edit
+    @post = Post.find(params[:id])
+  end
 
-  # def update
-  #   @post = Post.find(params[:id])
-  #   @post.draft = false
-  #   @post.update
-  # end
+  def update
+    @post = Post.find(params[:id])
+    @post.draft = false
+    @post.update
+  end
 
   def publish
     @post = Post.find(params[:id])

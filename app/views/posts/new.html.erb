@@ -15,7 +15,7 @@
         <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ', input_html: { data: { ia_generator_target: "prompt" } } %>
         <%= f.input :photos, as: :file, input_html: {multiple: true} %>
         <div class="text-center mt-4">
-        <%= f.submit "Générer votre post" %>
+        <%= f.submit "Générer votre post", class:"button-valider mt-3"%>
         </div>
         <% end %>
       </div>
