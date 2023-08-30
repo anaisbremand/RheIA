@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   def new
     @post = Post.new
   end
@@ -10,8 +12,17 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.save!
-    redirect_to post_path(@post)
+    if params[:from_chat_gpt]
+      # Traiter la réponse de ChatGPT et créer un nouveau post
+      @post.description = params[:description]
+    end
+
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      # Gestion des erreurs, par exemple réafficher le formulaire
+      render json: { errors: @post.errors.full_messages }, status: 422
+    end
   end
 
   def edit
@@ -51,6 +62,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:prompt, photos: [])
+    params.require(:post).permit(:prompt, :description, photos: [])
   end
 end
