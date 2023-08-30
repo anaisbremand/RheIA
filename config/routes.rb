@@ -17,7 +17,13 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
-  resources :posts
+
+  resources :posts do
+    member do
+      get 'passerelle'
+    end
+  end
+
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'

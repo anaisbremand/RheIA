@@ -20,7 +20,7 @@ export default class extends Controller {
     console.log("Envoi de requête à ChatGPT et Dall-E en cours...");
 
     const url = "https://api.openai.com/v1/chat/completions";
-    const apiKey = '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';
+    const apiKey = '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';
 
     const demande = `Réalise les étapes suivante:
                     1. écris une description en maximum 300 caractères de post Instagram sur le thème : '${this.promptTarget.value}'.
@@ -49,7 +49,7 @@ export default class extends Controller {
       const descriptionInstance = data.choices[0].message.content;
       console.log(descriptionInstance);
 
-      fetch("/posts", { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify( {description: descriptionInstance, from_chat_gpt: true})});
+      fetch(`/posts`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify( {description: descriptionInstance, from_chat_gpt: true})});
 
     })
 
