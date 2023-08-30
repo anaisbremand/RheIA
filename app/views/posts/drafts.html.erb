@@ -1,5 +1,6 @@
 <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
   <h1>Mes posts sauvegardés</h1>
+  <div class="grid">
     <div class = "container w-70 mt-4 d-flex f-row">
       <% @drafts.each_with_index do |post, index| %>
         <div class="card carousel-card m-3">
@@ -75,8 +76,8 @@
           </div>
         <% end %>
     </div>
-</div>
-
+  </div>
+  </div>
     </div>
       <div class="text-center">
         <%= link_to "Générer un autre post", new_post_path, class:"button-valider m-3" %>
