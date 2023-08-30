@@ -1,4 +1,3 @@
-
 <nav class="breadcrumb infos-card">
     <ul>
         <li class="breadcrumb_inactive">Générateur de post &#10148</li>
@@ -9,9 +8,11 @@
 
 <div class="d-flex">
 
+
   <div class="prompt w-50 text-center">
     <h2> Votre post </h2>
-    <%= @post.prompt %>
+    <a href=""><%= @post.prompt %></a>
+    <button><%= @post.description %></button>
   </div>
 
   <div>
