@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  margin: 1em;
+  width: 327px;
+  border: 1px solid;
+  border-radius: 3px;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+p {
+  display: inline;
+}
+
+.cta {
+  font-size: 10pt;
+  padding: 4px 12px;
+  color: #1c8bb6;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0 10px 0 10px;
+  padding: 8px 0px;
+}
+
+.textcontent {
+  padding: 10px 12px;
+  font-size: 12px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.topbar {
+  padding: 12px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.topbar span {
+  line-height: 11pt;
+}
+
+.topbar span img {
+  float: left;
+  margin-right: 8px;
+  border-radius: 15px;
+}
+
+.interactionbtns {
+  padding: 8px 0px;
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0 10px 0 10px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.interactionbtns span {
+  width: 95px;
+  display: flex;
+  justify-content: space-between;
+}
+
+path {
+  fill: none;
+  stroke-miterlimit: 10;
+  stroke: #000000;
+}
+
+.insta {
+  margin-left: 5em;
+}

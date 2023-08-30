@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'
+  get 'program/:id', to: 'posts#program', as: 'posts/program'
 end
