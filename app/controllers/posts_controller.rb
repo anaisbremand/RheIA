@@ -28,7 +28,7 @@ class PostsController < ApplicationController
       @post.description = params[:description]
     end
     if @post.save
-      render json: { id: @post.id }, status: :created
+      # render json: { id: @post.id }, status: :created
       redirect_to passerelle_post_path(@post)
     else
       # Gestion des erreurs, par exemple réafficher le formulaire

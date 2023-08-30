@@ -1,7 +1,7 @@
 <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
   <h1>Mes posts sauvegardés</h1>
-  <div class="grid">
-    <div class = "container w-70 mt-4 d-flex f-row">
+
+    <div class = "d-flex f-row">
     <div class="grid">
       <% @drafts.each_with_index do |post, index| %>
         <div class="card carousel-card m-3">
@@ -18,7 +18,7 @@
                   </svg>
           </div>
           <content select="img" style="max-width:max-content;">
-          <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide">
+          <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
             <div class="carousel-indicators">
               <% if post.photos.length > 1 %>
                 <% post.photos.each_with_index do |photo, index| %>
@@ -29,7 +29,7 @@
             <div class="carousel-inner">
               <% post.photos.each_with_index do |photo, index| %>
                   <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                    <%= cl_image_tag photo.key %>
+                    <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
                   </div>
               <% end %>
             </div>
@@ -77,10 +77,7 @@
           </div>
       <% end %>
     </div>
-    </div>
   </div>
-  </div>
-    </div>
       <div class="text-center column mx-5">
         <%= link_to "Générer un autre post", new_post_path, class:"button-valider my-3 px-3" %>
         <%= link_to "Voir mon historique", posts_historique_path, class:"button-annexe" %>
