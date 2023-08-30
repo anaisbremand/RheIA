@@ -9,7 +9,10 @@
 
 <h1>Votre post</h1>
 
-<%= @post.prompt %>
+  <a href=""><%= @post.prompt %></a>
+
+  <button><%= @post.description %></button>
+
 
 <%= link_to "Publier", posts_publish_path(@post) %>
 <%= link_to "Supprimer 🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"} %>
