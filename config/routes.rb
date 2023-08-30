@@ -18,11 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts do
-    member do
-      get 'passerelle'
-    end
-  end
+  resources :posts
 
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'

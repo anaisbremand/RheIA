@@ -11,8 +11,8 @@
 
   <div class="prompt w-50 text-center">
     <h2> Votre post </h2>
-    <a href=""><%= @post.prompt %></a>
-    <button><%= @post.description %></button>
+    <h3><%= @post.prompt %></h3>
+    <h4><%= @post.description %></h4>
   </div>
 
   <div>
@@ -79,7 +79,7 @@
 
           <div class="textcontent">
               <b>[[pseudo instagram]] </b>
-              <content select="span" style="display:inline;"> <%= @post.prompt %></content>
+              <content select="span" style="display:inline;"> <%= @post.description %></content>
           </div>
   </div>
     <div class="text-center mt-3">
