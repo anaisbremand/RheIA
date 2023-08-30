@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: '%i :create, :passerrelle'
 
   def new
     @post = Post.new
@@ -7,19 +7,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post.reload
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    if params[:from_chat_gpt]
-      # Traiter la réponse de ChatGPT et créer un nouveau post
-      @post.description = params[:description]
-    end
     if @post.save
-      render json: { id: @post.id }, status: :created
-      redirect_to passerelle_post_path(@post)
+      redirect_to passerelle_post_path(@post), flash: { post_id: @post.id }
     else
       # Gestion des erreurs, par exemple réafficher le formulaire
       render json: { errors: @post.errors.full_messages }, status: 422
@@ -28,10 +22,8 @@ class PostsController < ApplicationController
 
   def passerelle
     @post = Post.find(params[:id])
-    if params[:from_chat_gpt]
-      # Traiter la réponse de ChatGPT et créer un nouveau post
-      @post.description = params[:description]
-    end
+    # @post.description = params[:description]
+    # @post.save
   end
 
   def edit
@@ -40,8 +32,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.draft = false
-    @post.update
+    @post.description = params[:description]
+    @post.save
   end
 
   def publish

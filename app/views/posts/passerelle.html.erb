@@ -1,11 +1,20 @@
 <h1>Ceci est une page passerelle</h1>
 <h2>en attente de la création de la description de chatgpt</h2>
 
+<div data-controller="ia-generator">
+<button data-action="click->ia-generator#generate">Go api !</button>
+
 <h3> <%= @post %> </h3>
 
-<h3> <%= @post.prompt %> </h3>
+<h3 data-ia-generator-target="prompt"> <%= @post.prompt %> </h3>
 
 <h3> <%= @post.description %> </h3>
 
+<h1 data-ia-generator-target="id"><%= @post.id %></h1>
+
+
 
 <%= link_to "Voir mon post", post_path(@post) %>
+
+
+</div>
