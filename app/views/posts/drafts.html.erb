@@ -2,23 +2,23 @@
   <h1>Mes posts sauvegardés</h1>
     <div class = "container w-70 mt-4 d-flex f-row">
       <% @drafts.each_with_index do |post, index| %>
-        <div class="card carousel-card m-3">
+      <div class="card carousel-card m-3">
 
         <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide">
-          <div class="carousel-indicators">
-            <% if post.photos.length > 1 %>
-              <% post.photos.each_with_index do |photo, index| %>
-                <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+            <div class="carousel-indicators">
+              <% if post.photos.length > 1 %>
+                <% post.photos.each_with_index do |photo, index| %>
+                  <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
-          <div class="carousel-inner">
-            <% post.photos.each_with_index do |photo, index| %>
-                <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                  <%= cl_image_tag photo.key %>
-                </div>
-            <% end %>
-          </div>
+            </div>
+            <div class="carousel-inner">
+              <% post.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                    <%= cl_image_tag photo.key %>
+                  </div>
+              <% end %>
+            </div>
           <% if post.photos.length > 1 %>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,13 +36,13 @@
         </div>
         <%= post.user.email %>
         <%= post.prompt %>
-      <div class="text-center m-3 btn-outline-danger">
-        <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
-      </div>
+        <div class="text-center m-3 btn-outline-danger">
+          <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
         </div>
+      </div>
       <% end %>
 
-    </div>
+</div>
       <div class="text-center">
         <%= link_to "Générer un autre post", new_post_path, class:"button-valider m-3" %>
         <%= link_to "Voir mon historique", posts_historique_path, class:"button-valider" %>

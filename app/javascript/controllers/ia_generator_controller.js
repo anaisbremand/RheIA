@@ -7,17 +7,27 @@ export default class extends Controller {
   connect() {
   }
 
-  generate() {
+  generate(event) {
+    event.preventDefault();
     const prompt = this.promptTarget.value;
     console.log(prompt);
+
+
+    fetch(this.formTarget.action, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(this.formTarget)
+    })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+      })
+
     // console.log("Salut");
     // const url = "https://api.openai.com/v1/chat/completions";
     // const apiKey = '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';
 
     // const demande = this.promptTarget.value;
-
-
-
   }
 }
 
