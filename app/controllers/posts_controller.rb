@@ -3,6 +3,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+
+    # respond_to do |format|
+    #   if @post.save
+    #     format.html { redirect_to post_path(@post) }
+    #     format.json
+    #   else
+    #     format.html { render "posts/show", status: :unprocessable_entity }
+    #     format.json
+    #   end
+    # end
   end
 
   def show
