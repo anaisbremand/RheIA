@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post.reload
   end
 
   def create
@@ -16,12 +17,20 @@ class PostsController < ApplicationController
       # Traiter la réponse de ChatGPT et créer un nouveau post
       @post.description = params[:description]
     end
-
     if @post.save
-      redirect_to post_path(@post)
+      render json: { id: @post.id }, status: :created
+      redirect_to passerelle_post_path(@post)
     else
       # Gestion des erreurs, par exemple réafficher le formulaire
       render json: { errors: @post.errors.full_messages }, status: 422
+    end
+  end
+
+  def passerelle
+    @post = Post.find(params[:id])
+    if params[:from_chat_gpt]
+      # Traiter la réponse de ChatGPT et créer un nouveau post
+      @post.description = params[:description]
     end
   end
 
