@@ -2,19 +2,29 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="ia-generator"
 export default class extends Controller {
-  static targets = ["form", "prompt", "description"]
+  static targets = ["prompt", "description", "id"]
 
+
+
+  connect() {
+    console.log("Controller Stimulus bien démarré !");
+    // console.log(this.promptTarget);
+    console.log(this.promptTarget.innerText);
+  }
 
 
   generate() {
 
+    const csrfToken = document.querySelector("[name='csrf-token']").getAttribute("content");
+
+
     console.log("Envoi de requête à ChatGPT et Dall-E en cours...");
 
     const url = "https://api.openai.com/v1/chat/completions";
-    const apiKey = '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';
+    const apiKey = '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';
 
     const demande = `Réalise les étapes suivante:
-                    1. écris une description en maximum 300 caractères de post Instagram sur le thème : '${this.promptTarget.value}'.
+                    1. écris une description en maximum 300 caractères de post Instagram sur le thème : '${this.promptTarget.innerText}'.
                     La description doit être en FRANCAIS.
                     La description doit être entre crochet [].`
 
@@ -39,8 +49,16 @@ export default class extends Controller {
 
       const descriptionInstance = data.choices[0].message.content;
       console.log(descriptionInstance);
+      console.log(this.idTarget.innerText);
 
-      fetch(`/posts`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify( {description: descriptionInstance, from_chat_gpt: true})});
+      fetch(`/posts/${this.idTarget.innerText}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken  // Ajoutez cette ligne
+        },
+        body: JSON.stringify({ description: descriptionInstance })
+      });
 
     })
 
