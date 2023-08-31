@@ -1,6 +1,5 @@
 <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
   <h1>Mes posts sauvegardés</h1>
-
     <div class = "d-flex f-row">
     <div class="grid">
       <% @drafts.each_with_index do |post, index| %>
@@ -43,7 +42,7 @@
                 <span class="visually-hidden">Next</span>
               </button>
             <% end %>
-        </div>
+          </div>
 
           </content>
           <%# <div class="cta">[[cta]]
@@ -72,9 +71,9 @@
               <content select="span" style="display:inline;"> </content>
           </div>
           <div class="text-center m-3 btn-outline-danger">
-         <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
+            <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
           </div>
-          </div>
+        </div>
       <% end %>
     </div>
   </div>
