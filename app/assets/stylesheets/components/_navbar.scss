@@ -7,6 +7,9 @@
   height: 64px;
   padding-left: 18px;
   border-radius: 0px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .menu-nav {
@@ -79,7 +82,7 @@
   overflow: hidden;
   width: 200px;
   background: #212529;
-  z-index: 1000 !important;
+  z-index: 102 !important;
   display: none;
   border-radius: 5px;
   position: absolute;
