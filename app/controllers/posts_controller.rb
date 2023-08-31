@@ -15,8 +15,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.description = create_description(chat_with_gpt(@post.prompt))
-    chat_with_dalle(chat_with_gpt(@post.prompt))
+    @post.description = chat_with_gpt(@post.prompt)
+    # chat_with_dalle(chat_with_gpt(@post.prompt))
     if @post.save
       redirect_to post_path(@post)
     else
@@ -112,16 +112,16 @@ class PostsController < ApplicationController
     return reponse_gpt
   end
 
-  def chat_with_dalle(prompt)
-    api_key = ENV['CHATGPT']
-    url = "https://api.openai.com/v1/images/generations"
-    headers = { Authorization: "Bearer #{api_key}", 'Content-Type': 'application/json' }
-    payload = { prompt: create_img(prompt), n: 1, size: "512x512" }.to_json
+  # def chat_with_dalle(prompt)
+  #   api_key = ENV['CHATGPT']
+  #   url = "https://api.openai.com/v1/images/generations"
+  #   headers = { Authorization: "Bearer #{api_key}", 'Content-Type': 'application/json' }
+  #   payload = { prompt: create_img(prompt), n: 1, size: "512x512" }.to_json
 
-    response = RestClient.post(url, payload, headers)
-    parsed_response = JSON.parse(response.body)
-    puts parsed_response
-    reponse_dalle = parsed_response['data'][0]['url']
-    return reponse_dalle
-  end
+  #   response = RestClient.post(url, payload, headers)
+  #   parsed_response = JSON.parse(response.body)
+  #   puts parsed_response
+  #   reponse_dalle = parsed_response['data'][0]['url']
+  #   return reponse_dalle
+  # end
 end
