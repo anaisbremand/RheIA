@@ -37,3 +37,23 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 8px;
 }
+
+.menu {
+  background-color: #212529;
+  height: 660px;
+  align-items: center;
+  position: sticky;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+
+}
+
+// .menu  ul li {
+//   display: flex;
+//   text-decoration: none;
+//   justify-content: space-around;
+// }
