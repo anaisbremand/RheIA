@@ -15,7 +15,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.description = chat_with_gpt(@post.prompt)
+
+    @post.description = create_description(chat_with_gpt(@post.prompt))
+
+
     # chat_with_dalle(chat_with_gpt(@post.prompt))
     if @post.save
       redirect_to post_path(@post)
@@ -71,16 +74,9 @@ class PostsController < ApplicationController
 
   def good_prompt(prompt)
     better_prompt = "Réalise les étapes suivante:
-    1. écris une description en maximum 300 caractères de post Instagram sur le thème : '#{prompt}' et respecte ces conditions:
-    a) La description doit être en FRANCAIS.
-    b) TOUTE La description issue de mon thème doit être entre crochet [] pour la récupérer avec un regexp.
-    2. écris une instruction à donner à une IA génératrice d'images à partir de la description que tu as inventée juste avant. Elle doit illustrer le thème et permettre une création d'images en rapport avec.
-    L'instruction doit respecter les conditions suivantes:
-        a) Sans limite de caractère.
-        b) elle doit être détaillée.
-        c) elle doit être en anglais.
-        d) contenir les mots 'Ultra realistic photo'.
-        e) TOUTE l'instruction doit être entre accolades { } afin d'être envoyée directement à l'IA génératrice d'image"
+    1. voici mon thème : '#{prompt}'
+    2. crée une description en FRANCAIS de 300 caractères maximum d'un post Instagram et tu la mets entre crochets [].
+    3. écris une instruction sans limite de caractère, bien détaillée en ANGLAIS, qui contient les mots 'Ultra realistic photo' à donner à une IA génératrice d'images à partir de la description que tu as inventée juste avant, elle doit illustrer le thème et tu la mets entre accolades { }."
     return better_prompt
   end
 

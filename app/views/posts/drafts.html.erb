@@ -1,84 +1,102 @@
-<div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
-  <h1>Mes posts sauvegardés</h1>
-    <div class = "d-flex f-row">
-    <div class="grid">
-      <% @drafts.each_with_index do |post, index| %>
-        <div class="card carousel-card m-3">
-          <div class="topbar">
-            <span>
-              <img src="[[icon]]">
-                <b>Pseudo insta</b>
-                  <br>
-                  </span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
-                      <circle cx="7.1" cy="16.4" r="3.1" />
-                      <circle cx="16.5" cy="16.4" r="3.1" />
-                      <circle cx="25.9" cy="16.4" r="3.1" />
-                  </svg>
-          </div>
-          <content select="img" style="max-width:max-content;">
-          <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
-            <div class="carousel-indicators">
-              <% if post.photos.length > 1 %>
-                <% post.photos.each_with_index do |photo, index| %>
-                  <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+
+<div class="d-flex">
+
+  <div class="w-25">
+      <div class="d-flex flex-column menu justify-content-around">
+          <p><%= link_to "Mes posts sauvegardés", posts_drafts_path %> </p>
+          <p><%= link_to "Mon historique de post", posts_drafts_path %> </p>
+          <p><%= link_to "Générateur d'idées" %> </p>
+          <p><%= link_to "Mes statistiques" %></p>
+          <%= button_to "Générateur de post", new_post_path, class:"button-valider-annexe" %>
+      </div>
+  </div>
+
+  <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
+    <h1>Mes posts sauvegardés</h1>
+
+      <div class = "d-flex f-row">
+      <div class="grid">
+        <% @drafts.each_with_index do |post, index| %>
+          <div class="card carousel-card m-3">
+            <div class="topbar">
+              <span>
+                <img src="[[icon]]">
+                  <b>Pseudo insta</b>
+                    <br>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
+                        <circle cx="7.1" cy="16.4" r="3.1" />
+                        <circle cx="16.5" cy="16.4" r="3.1" />
+                        <circle cx="25.9" cy="16.4" r="3.1" />
+                    </svg>
+            </div>
+            <content select="img" style="max-width:max-content;">
+            <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
+              <div class="carousel-indicators">
+                <% if post.photos.length > 1 %>
+                  <% post.photos.each_with_index do |photo, index| %>
+                    <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+                  <% end %>
                 <% end %>
+              </div>
+              <div class="carousel-inner">
+
+                <% post.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                      <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
+                    </div>
+                <% end %>
+              </div>
+              <% if post.photos.length > 1 %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               <% end %>
-            </div>
-            <div class="carousel-inner">
-              <% post.photos.each_with_index do |photo, index| %>
-                  <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                    <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
-                  </div>
-              <% end %>
-            </div>
-            <% if post.photos.length > 1 %>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            <% end %>
           </div>
 
-          </content>
-          <%# <div class="cta">[[cta]]
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="15" height="15">
-                  <path d="M10 3l13.2 13-13 14" style="stroke: #1c8bb6;stroke-width: 5;" />
-              </svg>
-          </div> %>
-          <div class="interactionbtns">
-              <span>
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="20" height="20">
-                  <path d="M17.42 8.18a4.85 4.85 0 0 0-8-5.48 4.85 4.85 0 1 0-8 5.48l7.9 9z"/>
-                  </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" width="20" height="20">
-                  <path d="M18 18.2l-1.4-3.8a8.8 8.8 0 1 0-2.3 2.3z"/>
-                  </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 39.4 39.3" width="20" height="20">
-              <path d="M20.2 35.4L17 18.8 3 6.4h34.5zM17 18.8L37.4 6.4" style="stroke-width: 2;"/>
-              </svg>
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 46 46.3" width="20" height="20">
-                  <path d="M10.2 3.4v39.3L24.4 29l12.8 14.6V3.4z" style="stroke-width: 2;" />
-              </svg>
-          </div>
-          <div class="textcontent">
-              <b>[[pseudo instagram]] </b>
-              <content select="span" style="display:inline;"> </content>
-          </div>
-          <div class="text-center m-3 btn-outline-danger">
-            <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-      <div class="text-center column mx-5">
-        <%= link_to "Générer un autre post", new_post_path, class:"button-valider my-3 px-3" %>
-        <%= link_to "Voir mon historique", posts_historique_path, class:"button-annexe" %>
+            </content>
+            <%# <div class="cta">[[cta]]
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="15" height="15">
+                    <path d="M10 3l13.2 13-13 14" style="stroke: #1c8bb6;stroke-width: 5;" />
+                </svg>
+            </div> %>
+            <div class="interactionbtns">
+                <span>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="20" height="20">
+                    <path d="M17.42 8.18a4.85 4.85 0 0 0-8-5.48 4.85 4.85 0 1 0-8 5.48l7.9 9z"/>
+                    </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" width="20" height="20">
+                    <path d="M18 18.2l-1.4-3.8a8.8 8.8 0 1 0-2.3 2.3z"/>
+                    </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 39.4 39.3" width="20" height="20">
+                <path d="M20.2 35.4L17 18.8 3 6.4h34.5zM17 18.8L37.4 6.4" style="stroke-width: 2;"/>
+                </svg>
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 46 46.3" width="20" height="20">
+                    <path d="M10.2 3.4v39.3L24.4 29l12.8 14.6V3.4z" style="stroke-width: 2;" />
+                </svg>
+            </div>
+            <div class="textcontent">
+                <b>[[pseudo instagram]] </b>
+                <content select="span" style="display:inline;"> </content>
+            </div>
+
+            <div class="text-center m-3 btn-outline-danger">
+          <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
+            </div>
+            </div>
+        <% end %>
       </div>
+
+    </div>
+        <div class="text-center column mx-5">
+          <%= link_to "Générer un autre post", new_post_path, class:"button-valider my-3 px-3" %>
+          <%= link_to "Voir mon historique", posts_historique_path, class:"button-annexe" %>
+        </div>
+  </div>
 </div>
