@@ -15,7 +15,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+
     @post.description = create_description(chat_with_gpt(@post.prompt))
+
 
     # chat_with_dalle(chat_with_gpt(@post.prompt))
     if @post.save

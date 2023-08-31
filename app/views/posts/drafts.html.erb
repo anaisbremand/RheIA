@@ -1,3 +1,4 @@
+
 <div class="d-flex">
 
   <div class="w-25">
@@ -39,6 +40,7 @@
                 <% end %>
               </div>
               <div class="carousel-inner">
+
                 <% post.photos.each_with_index do |photo, index| %>
                     <div class="carousel-item <%= index == 0 ? "active" : "" %>">
                       <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
@@ -83,12 +85,14 @@
                 <b>[[pseudo instagram]] </b>
                 <content select="span" style="display:inline;"> </content>
             </div>
+
             <div class="text-center m-3 btn-outline-danger">
           <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>
             </div>
             </div>
         <% end %>
       </div>
+
     </div>
         <div class="text-center column mx-5">
           <%= link_to "Générer un autre post", new_post_path, class:"button-valider my-3 px-3" %>
