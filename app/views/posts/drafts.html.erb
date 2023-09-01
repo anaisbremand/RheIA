@@ -7,7 +7,7 @@
     <div class = "d-flex f-row">
       <div class="grid">
         <% @drafts.each_with_index do |post, index| %>
-          <div class="card carousel-card m-3">
+          <div class="card carousel-card m-4">
             <div class="topbar">
               <div>
                 <%= image_tag "138893298.jpg", class:"icon" %>
@@ -63,10 +63,10 @@
                 <path d="M10.2 3.4v39.3L24.4 29l12.8 14.6V3.4z" style="stroke-width: 2;" />
               </svg>
             </div>
-            <div class="textcontent">
-              <b> alicebernaud </b>
-              <content select="span" style="display:inline;"> <%= post.description %></content>
-            </div>
+              <div class="textcontent ">
+                <b> alicebernaud </b>
+                <content select="span" style="display:inline;"> <%= post.description %></content>
+              </div>
             <div class="text-center m-3 button-annexe milieu">
               <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}%>
             </div>
