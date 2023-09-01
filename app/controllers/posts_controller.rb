@@ -110,7 +110,7 @@ class PostsController < ApplicationController
     api_key = ENV['CHATGPT']
     url = "https://api.openai.com/v1/images/generations"
     headers = { Authorization: "Bearer #{api_key}", 'Content-Type': 'application/json' }
-    payload = { prompt: create_img(prompt), n: 1, size: "256x256" }.to_json
+    payload = { prompt: create_img(prompt), n: 1, size: "512x512" }.to_json
 
     response = RestClient.post(url, payload, headers)
     parsed_response = JSON.parse(response.body)
