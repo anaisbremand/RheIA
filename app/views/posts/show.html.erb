@@ -33,18 +33,18 @@
     <h4 class="text-center" >Vue Instagram</h4>
         <div class="card carousel-card  insta text-center mt-3">
             <div class="topbar">
-            <div>
-              <%= image_tag "138893298.jpg", class:"icon" %>
-                <b>alicebernaud</b>
-            </div>
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
-                    <circle cx="7.1" cy="16.4" r="3.1" />
-                    <circle cx="16.5" cy="16.4" r="3.1" />
-                    <circle cx="25.9" cy="16.4" r="3.1" />
-                </svg>
+              <div>
+                <%= image_tag "138893298.jpg", class:"icon" %>
+                  <b>alicebernaud</b>
               </div>
-            </div>
+              <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
+                      <circle cx="7.1" cy="16.4" r="3.1" />
+                      <circle cx="16.5" cy="16.4" r="3.1" />
+                      <circle cx="25.9" cy="16.4" r="3.1" />
+                  </svg>
+                </div>
+              </div>
             <content select="img" style="max-width:max-content;">
           <div id="carouselExampleIndicators"  class="carousel slide custom">
             <div class="carousel-indicators">
@@ -102,7 +102,7 @@
     <div class="text-center mt-3">
       <%= link_to "Supprimer 🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
       <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
-      <%= link_to "Programmer", posts_drafts_path,  class:"button-annexe"%>
+      <%= link_to "Programmer", programmations_new_path,  class:"button-annexe"%>
       <%= link_to "Publier", posts_publish_path(@post), class:"button-valider my-3" %>
     </div>
 

@@ -20,11 +20,10 @@
         <% @drafts.each_with_index do |post, index| %>
           <div class="card carousel-card m-3">
             <div class="topbar">
-              <span>
-                <img src="[[icon]]">
-                  <b>Pseudo insta</b>
-                    <br>
-                    </span>
+              <div>
+                <%= image_tag "138893298.jpg", class:"icon" %>
+                  <b>alicebernaud</b>
+              </div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
                         <circle cx="7.1" cy="16.4" r="3.1" />
                         <circle cx="16.5" cy="16.4" r="3.1" />
@@ -83,9 +82,9 @@
                 </svg>
             </div>
             <div class="textcontent">
-                <b>[[pseudo instagram]] </b>
-                <content select="span" style="display:inline;"> </content>
-            </div>
+                <b> alicebernaud </b>
+                <content select="span" style="display:inline;"> <%= post.description %></content>
+              </div>
 
             <div class="text-center m-3 btn-outline-danger">
           <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}, class:"btn" %>

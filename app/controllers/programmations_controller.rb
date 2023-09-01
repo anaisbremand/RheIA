@@ -17,7 +17,7 @@ class ProgrammationsController < ApplicationController
   #   @post = Post.find(params[:post_id])
   #   @programmation.post = @post
   #   if @programmation.save!
-  #     redirect_to post_path(@post)
+  #     redirect_to programmations_new
   #   else
   #     render :new, status: :unprocessable_entity
   #   end
