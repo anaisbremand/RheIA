@@ -53,7 +53,6 @@
 }
 #menu li a:hover {
   color: white;
-  background: transparent;
 }
 #menu input {
   display: none;
@@ -98,11 +97,13 @@
   text-transform: capitalize;
   line-height: 3em;
   }
+
 #menu li:hover ul.sub-menus {
   display: block
 }
-#menu ul.sub-menus a:hover{
-  background: #FFFFFF;
+
+#menu ul.sub-menus li:hover{
+  background:linear-gradient(to bottom, #841484 5%, #9c3ca4 100%);
   color: #333333;
 }
 @media screen and (max-width: 800px){
