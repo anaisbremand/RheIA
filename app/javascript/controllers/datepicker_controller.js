@@ -1,9 +1,12 @@
-import { Controller } from "@hotwired/stimulus"
-import flatpickr from "flatpickr"; // You need to import this to use new flatpickr()
+import { Controller } from "@hotwired/stimulus";
+import flatpickr from "flatpickr";
 
 export default class extends Controller {
-  static targets = ["calendar"]
+
   connect() {
-    flatpickr(this.element)
+    new flatpickr(this.element, {
+      enableTime: true
+
+    });
   }
 }

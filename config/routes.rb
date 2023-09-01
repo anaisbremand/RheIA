@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'programmations/index'
+  get 'programmations/show'
+  get 'programmations/new'
+  get 'programmations/create'
+  get 'programmations/update'
+  get 'programmations/edit'
+  get 'programmations/destroy'
   # get 'posts/index'
   # get 'posts/show'
   # get 'posts/new'
@@ -18,7 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts
+  resources :posts do
+    resources :programmations, only: [:index, :create, :new]
+  end
 
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'

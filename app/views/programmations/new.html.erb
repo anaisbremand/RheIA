@@ -1,0 +1,22 @@
+<h1> Programmer votre prochain post Instagram</h1>
+
+<div>
+
+
+  <div class = "w-50 mt-4">
+        <%= simple_form_for [@post, @programmation] do |f| %>
+          <%= f.input :open_at,label: "Date de programmation", as: :string,
+                wrapper_html: { class: "mb-4" },
+                label_html: { class: "form-label text-secondary fw-bold" },
+                input_html: { data: { controller: "datepicker" } } %>
+          <%= f.input :close_at, label: "Heure de programmation", as: :time,
+                wrapper_html: { class: "mb-4" },
+                label_html: { class: "form-label text-secondary fw-bold" },
+                input_html: { data: { controller: "datepicker" } } %>
+          <div class="text-center mt-4">
+          <%= f.submit "Programmer votre post", class:"button-valider mt-3"%>
+          </div>
+          <% end %>
+        </div>
+
+</div>

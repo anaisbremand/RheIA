@@ -1,0 +1,7 @@
+<h1>Mes posts programmés</h1>
+
+<div>
+<% @programmations.each do |programmation|%>
+  <%= programmation.open_at%>
+  <%= programmation.close_at%>
+</div>

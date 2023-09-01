@@ -55,15 +55,11 @@ class PostsController < ApplicationController
   end
 
   def drafts
-    @drafts = Post.all.select do |post|
-      post.draft
-    end
+    @drafts = Post.where(draft: true).order('created_at DESC')
   end
 
   def historique
-    @historique = Post.all.select do |post|
-      post.draft == false
-    end
+    @historique = Post.where(draft: false).order('created_at DESC')
   end
 
   private
