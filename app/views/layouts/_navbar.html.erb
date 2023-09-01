@@ -21,7 +21,7 @@
           <li><%= link_to "Générateur d'idées ",  new_user_session_path %></li>
           <li> <%= link_to "Historique des posts", posts_historique_path%>
           <li><%= link_to "Mes statistiques ",  new_user_session_path %></li>
-          <li><%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr ?", class:"alert alert-info"},  class:"alert-link"%></li>
+          <li><%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr ?"}%></li>
         </ul>
       </li>
     </div>
