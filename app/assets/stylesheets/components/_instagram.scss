@@ -35,6 +35,9 @@ p {
   display: flex;
   align-content: center;
   justify-content: space-between;
+  b {
+font-size: 12px;
+  }
 }
 
 .topbar span {
@@ -46,6 +49,7 @@ p {
   margin-right: 8px;
   border-radius: 15px;
 }
+
 
 .interactionbtns {
   padding: 8px 0px;
@@ -80,4 +84,9 @@ path {
   object-fit: cover;
   object-position: center;
 
+}
+
+.icon {
+  width: 30px;
+  border-radius: 10px;
 }

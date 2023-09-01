@@ -11,21 +11,21 @@
 
   <div class="prompt w-50 px-3">
     <h4 class="text-center"> Votre post </h4>
-    <div class="infos-card mt-3">
-      <%= simple_form_for @post do |f| %>
+    <div class="infos-card">
+      <%= simple_form_for @post  do |f| %>
+    <div class="form text-center py-3">
+      <% @post.photos.each do |photo| %>
+      <%= cl_image_tag photo.key %>
+      <%end%>
+    </div>
         <div class="champs-form mx-3">
         <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
         </div>
       <%# <%= f.input :photos, as: :file, input_html: {multiple: true} %>
         <div class="text-center mt-4">
-        <%= f.submit "Regénérer", class:"button-valider mt-3"%>
+        <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
         </div>
       <% end %>
-    <div class="form text-center">
-      <% @post.photos.each do |photo| %>
-      <%= cl_image_tag photo.key %>
-      <%end%>
-    </div>
     </div>
   </div>
 
@@ -33,15 +33,17 @@
     <h4 class="text-center" >Vue Instagram</h4>
         <div class="card carousel-card  insta text-center mt-3">
             <div class="topbar">
-              <span>
-              <%# <img src="[[icon]]"> %>
-                <b>Pseudo insta</b>
-                  </span>
+            <div>
+              <%= image_tag "138893298.jpg", class:"icon" %>
+                <b>alicebernaud</b>
+            </div>
+            <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
                     <circle cx="7.1" cy="16.4" r="3.1" />
                     <circle cx="16.5" cy="16.4" r="3.1" />
                     <circle cx="25.9" cy="16.4" r="3.1" />
                 </svg>
+              </div>
             </div>
             <content select="img" style="max-width:max-content;">
           <div id="carouselExampleIndicators"  class="carousel slide custom">
@@ -92,7 +94,7 @@
           </div>
 
           <div class="textcontent">
-              <b>[[pseudo instagram]] </b>
+              <b> alicebernaud </b>
               <content select="span" style="display:inline;"> <%= @post.description %></content>
           </div>
 
@@ -100,7 +102,7 @@
     <div class="text-center mt-3">
       <%= link_to "Supprimer 🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
       <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
-      <%= link_to "Programmer", new_post_programmation_path(@post),  class:"button-annexe"%>
+      <%= link_to "Programmer", posts_drafts_path,  class:"button-annexe"%>
       <%= link_to "Publier", posts_publish_path(@post), class:"button-valider my-3" %>
     </div>
 
