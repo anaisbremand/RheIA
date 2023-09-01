@@ -13,6 +13,7 @@
       <li class="dropdown-arrow text-end"><% if current_user %>
             <%= link_to "Dashboard", posts_historique_path %>
           <% end %>
+
         <ul class='sub-menus text-end'>
           <li class="px-1"><%= link_to "Générateur de posts", new_post_path %></li>
           <li class="px-1"><%= link_to "Posts sauvegardés", posts_drafts_path %></li>
