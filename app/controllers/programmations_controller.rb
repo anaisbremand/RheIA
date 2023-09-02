@@ -1,6 +1,7 @@
 class ProgrammationsController < ApplicationController
   def index
-    @programmations = Programmation.all
+    @post = Post.find(params[:post_id])
+    @programmations = @post.programmation
   end
 
   def new
@@ -12,16 +13,16 @@ class ProgrammationsController < ApplicationController
     @programmation = Programmation.find(params[:id])
   end
 
-  # def create
-  #   @programmation = Programmation.new(programmation_params)
-  #   @post = Post.find(params[:post_id])
-  #   @programmation.post = @post
-  #   if @programmation.save!
-  #     redirect_to programmations_new
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
+  def create
+    @programmation = Programmation.new(programmation_params)
+    @post = Post.find(params[:post_id])
+    @programmation.post = @post
+    if @programmation.save!
+      redirect_to  post_programmations_path(@post)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def edit
     @programmation = Programmation.find(params[:id])
@@ -29,6 +30,13 @@ class ProgrammationsController < ApplicationController
 
   def update
     @programmation = Programmation.find(params[:id])
+    @post = @programmation.post
+    @programmation.update!(programmation_params)
+    if @programmation.save
+      redirect_to post_programmations_path(@post)
+    else
+      render 'post/show', status: :unprocessable_entity
+    end
   end
 
   def destroy
