@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     resources :programmations, only: [:index, :create, :new]
   end
 
+  resources :programmations, only: [:edit, :update]
+
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'

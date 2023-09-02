@@ -1,3 +1,3 @@
 class Programmation < ApplicationRecord
-  has_one :post
+  belongs_to :post
 end
