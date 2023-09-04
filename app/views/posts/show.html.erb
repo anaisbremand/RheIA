@@ -17,42 +17,62 @@
     <div class="update-img-text infos-card p-5">
 
 
-    <%= simple_form_for @post  do |f| %>
-    <div class="form text-center py-3">
+      <%= simple_form_for @post  do |f| %>
 
-      <div class="form py-3 d-flex flex-wrap justify-content-center">
-        <% @post.images.each do |photo| %>
-          <div style="width:256px; height:256px;" class="p-1">
-            <img src="<%=photo%>" alt="" class="crop">
-          </div>
-        <%end%>
-      </div>
+        <div class="form text-center py-3">
 
-    <div> <%= @post.description %></div>
-      <div data-controller="toggle" class="mt-5 text-center">
-        <button  data-action="click->toggle#fire" data-toggle-target="dispare" class="button-annexe ">Modifier la description</button>
-        <%= link_to "Régénérer un post", posts_publish_path(@post), class:"button-annexe"%>
-          <div data-toggle-target="togglableElement" class="d-none">
-              <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
-              <%= f.submit "Modifier mon post" %>
-
+          <div class="form py-3 d-flex flex-wrap justify-content-center">
+            <% @post.images.each do |photo| %>
+              <div style="flex-basis:33%" class="p-1">
+                <img src="<%=photo%>" alt="" class="crop">
+              </div>
+            <%end%>
           </div>
 
-          <%# <div class="text-center mt-4">
-            <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
-          <%# </div>  %>
+          <div class="p-3" data-controller="toggle">
+
+            <div class="post-description-modifiable">
+              <p><%= @post.description %></p>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3 flex-wrap">
+
+              <button style="flex-basis:40%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
+                Modifier la description
+              </button>
+              <%= link_to "Régénérer un post", posts_publish_path(@post), style: "flex-basis:40%", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
+
+              <div style="flex-basis:100%" data-toggle-target="textarea" class="d-none">
+
+                <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
+                <div class="d-flex justify-content-around">
+                    <%= f.submit "Modifier mon post", class: "button-annexe", style: "flex-basis:40%" %>
+                    <button data-action="click->toggle#cancelArea" class="button-cancel" style= "flex-basis:40%">
+                      cancel
+                    </button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+            <%# <%= link_to "Régénérer un post", posts_publish_path(@post), class:"button-annexe"%>
 
         </div>
 
       <% end %>
     </div>
-    <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off' } do |f| %>
-      <%= f.text_field :new_prompt, input_html: { value: "", placeholder: "Re-taper votre post" } %>
-      <%= f.submit "Regenerer le post"%>
-    <% end %>
-  </div>
 
-  </div>
+      <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off' } do |f| %>
+        <%= f.text_field :new_prompt, input_html: { value: "", placeholder: "Re-taper votre post" } %>
+        <%= f.submit "Regenerer le post"%>
+      <% end %>
+
+    </div>
+
+
 
 
   <div class="container-instagram w-50 p-3">
@@ -69,7 +89,6 @@
 
     <div class="container-buttons text-center mt-3">
       <%= render "show_btns", post: @post %>
-
     </div>
 
   </div>
