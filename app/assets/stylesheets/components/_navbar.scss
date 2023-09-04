@@ -24,7 +24,7 @@
 
 .espaceC {
   flex-basis: 33%;
-  justify-items: end;
+  align-self: center;
 }
 
 #menu ul {
@@ -75,15 +75,16 @@
   margin-left: 20px;
 }
 #menu ul.sub-menus{
-  justify-content: center;
+  // justify-content: center;
   height: 300px;
   overflow: hidden;
-  width: 200px;
+  width: 250px;
   background: #212529;
   z-index: 102 !important;
   display: none;
   border-radius: 5px;
   position: absolute;
+  left: -180px;
   }
 #menu ul.sub-menus li {
   display: block;
