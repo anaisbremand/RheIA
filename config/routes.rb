@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :programmations, only: [:index, :create, :new]
+    resources :programmations, only: [:show, :create, :new]
   end
 
-  resources :programmations, only: [:edit, :update]
+  resources :programmations, only: [:edit, :update, :index]
 
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'

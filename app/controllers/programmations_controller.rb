@@ -1,7 +1,7 @@
 class ProgrammationsController < ApplicationController
   def index
-    @post = Post.find(params[:post_id])
-    @programmations = @post.programmation
+    @programmations = Programmation.all
+
   end
 
   def new
@@ -10,6 +10,7 @@ class ProgrammationsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:post_id])
     @programmation = Programmation.find(params[:id])
   end
 
@@ -18,7 +19,7 @@ class ProgrammationsController < ApplicationController
     @post = Post.find(params[:post_id])
     @programmation.post = @post
     if @programmation.save!
-      redirect_to  post_programmations_path(@post)
+      redirect_to post_programmation_path(@post, @programmation)
     else
       render :new, status: :unprocessable_entity
     end
