@@ -3,8 +3,6 @@
 
 }
 
-
-
 // .flex-container {
 //   display: flex;
 //   flex-direction: row;
@@ -22,14 +20,14 @@
   align-items: center;
 }
 
-.carousel-card {
-  display: flex;
-  justify-content: space-between;
-  img {
-    object-fit: cover;
-    object-position: center;
-  }
-}
+// .carousel-card {
+//   display: flex;
+//   justify-content: space-between;
+//   img {
+//     object-fit: cover;
+//     object-position: center;
+//   }
+// }
 
 .grid {
   display: grid;
