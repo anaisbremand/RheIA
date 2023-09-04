@@ -3,25 +3,22 @@ require 'json'
 require 'open-uri'
 
 class PostsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: '%i :create, :passerrelle'
+  before_action :set_post, only: %i[show edit update publish destroy]
 
   def new
     @post = Post.new
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-
-    @post.description = create_description(chat_with_gpt(@post.prompt))
-    img_array = chat_with_dalle(chat_with_gpt(@post.prompt))
-    img_array.each do |img|
-      img_link = URI.open(img['url'])
-      @post.photos.attach(io: img_link, filename: "post.jpg", content_type: "image/jpg")
+    @post.description = description_from(ask_chatgpt(@post.prompt))
+    array_img = ask_dalle(ask_chatgpt(@post.prompt))
+    array_img.each do |img|
+      @post.photos.attach(io: URI.open(img['url']), filename: "post.jpg", content_type: "image/jpg")
     end
 
     if @post.save
@@ -32,28 +29,17 @@ class PostsController < ApplicationController
     end
   end
 
-  # def passerelle
-  #   @post = Post.find(params[:id])
-  #   # @post.description = params[:description]
-  #   # @post.save
-  # end
-
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
   end
 
   def publish
-    @post = Post.find(params[:id])
-    @post.draft = false
-    @post.save
+    @post.update(draft: false)
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_drafts_path
   end
@@ -72,53 +58,41 @@ class PostsController < ApplicationController
     params.require(:post).permit(:prompt, :description, photos: [])
   end
 
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-  def good_prompt(prompt)
-    better_prompt = "Réalise les étapes suivante:
+  def better_prompt(prompt)
+    return "Réalise les étapes suivante:
     1. voici mon thème : '#{prompt}'
     2. crée une description en FRANCAIS de 300 caractères maximum d'un post Instagram et tu la mets entre crochets [].
-    3. écris une instruction en 100 caractères, en ANGLAIS à donner à une IA génératrice d'images à partir de la description que tu as inventée juste avant qui doit l'illustrer et tu la mets entre accolades { }."
-    return better_prompt
+    3. écris une instruction en 100 caractères, en ANGLAIS à donner à une IA génératrice d'images
+    à partir de la description que tu as inventée juste avant qui doit l'illustrer et tu la mets entre accolades { }."
   end
 
-  def chat_with_gpt(prompt)
-    api_key = ENV['CHATGPT']
+  def ask_chatgpt(prompt)
     url = "https://api.openai.com/v1/chat/completions"
-
-    headers = { Authorization: "Bearer #{api_key}", 'Content-Type': 'application/json' }
-
-    payload = { model: "gpt-3.5-turbo", messages: [{ role: "user", content: good_prompt(prompt) }] }.to_json
+    payload = { model: "gpt-3.5-turbo", messages: [{ role: "user", content: better_prompt(prompt) }] }.to_json
+    headers = { Authorization: "Bearer #{ENV.fetch('OPENAI_TOKEN')}", 'Content-Type': 'application/json' }
     response = RestClient.post(url, payload, headers)
-    parsed_response = JSON.parse(response.body)
-
-    reponse_gpt = parsed_response['choices'][0]['message']['content']
-    return reponse_gpt
+    reponse_gpt = JSON.parse(response.body)
+    return reponse_gpt['choices'][0]['message']['content']
   end
 
-  def create_description(reponse_gpt)
-    description = reponse_gpt.match(/\[(.*?)\]/)
-    if description
-      return description[1]
-    end
+  def description_from(reponse_gpt)
+    return reponse_gpt.match(/\[(.*?)\]/)[1]
   end
 
-  def create_img(reponse_gpt)
-    description = reponse_gpt.match(/\{(.*?)\}/)
-    if description
-      return description[1]
-    end
+  def img_from(reponse_gpt)
+    return reponse_gpt.match(/\{(.*?)\}/)[1]
   end
 
-  def chat_with_dalle(prompt)
-    api_key = ENV['CHATGPT']
+  def ask_dalle(prompt)
     url = "https://api.openai.com/v1/images/generations"
-    headers = { Authorization: "Bearer #{api_key}", 'Content-Type': 'application/json' }
-    payload = { prompt: create_img(prompt), n: 4, size: "512x512" }.to_json
-
+    payload = { prompt: img_from(prompt), n: 4, size: "512x512" }.to_json
+    headers = { Authorization: "Bearer #{ENV.fetch('OPENAI_TOKEN')}", 'Content-Type': 'application/json' }
     response = RestClient.post(url, payload, headers)
-    parsed_response = JSON.parse(response.body)
-    puts parsed_response
-    reponse_dalle = parsed_response['data']
-    return reponse_dalle
+    reponse_dalle = JSON.parse(response.body)
+    return reponse_dalle['data']
   end
 end

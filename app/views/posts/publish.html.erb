@@ -1,14 +1,17 @@
 <nav class="breadcrumb infos-card">
-    <ul>
-        <li class="breadcrumb_inactive">Générateur de post &#10148</li>
-        <li class="breadcrumb_inactive">Modification &#10148</li>
-        <li class="breadcrumb_active">Publication</li>
-    </ul>
+  <ul>
+    <li class="breadcrumb_inactive">Générateur de post &#10148</li>
+    <li class="breadcrumb_inactive">Modification &#10148</li>
+    <li class="breadcrumb_active">Publication</li>
+  </ul>
 </nav>
 
-<div class="infos-card rounded-4 p-5 text-center ">
-<h1>🎉 Bravo, c'est publié ! 🎉</h1>
-<%= link_to "Générer un autre post !", new_post_path, class:"button-valider mx-auto w-25" %>
-<%= link_to "Mon historique", posts_historique_path, class:"button-valider mx-auto w-25" %>
+<div class="d-flex justify-content-center align-items-center" style="height:72vh">
+
+  <div class="p-5 w-75 text-center rounded-4 infos-card">
+    <h1 class="my-5">🎉 Bravo, c'est publié ! 🎉</h1>
+    <%= button_to "Générer un autre post !", new_post_path, class:"button-valider my-3 w-25" %>
+    <%= button_to "Mon historique", posts_historique_path, class:"button-valider my-3 w-25" %>
+  </div>
 
 </div>
