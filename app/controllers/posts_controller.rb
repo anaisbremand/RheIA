@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     array_img.each do |img|
       @post.images << img['url']
     end
-
+    # @post.photos.attach(params[:post][:photos])
     if @post.save
       redirect_to post_path(@post)
     else
