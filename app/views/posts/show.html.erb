@@ -1,44 +1,58 @@
-<nav class="breadcrumb infos-card">
+<div class="breadcrumb infos-card">
     <ul>
         <li class="breadcrumb_inactive">Générateur de post &#10148</li>
         <li class="breadcrumb_active">Modification &#10148</li>
         <li class="breadcrumb_inactive">Publication</li>
     </ul>
-</nav>
+</div>
 
-<div class="d-flex flex-nowrap">
+<div class="container-show d-flex flex-nowrap">
 
-  <div class="prompt w-50 px-3">
-    <h4 class="text-center"> Votre post </h4>
+  <div class="container-prompt-img-description prompt w-50 p-3">
 
-    <div class="infos-card">
+    <h4 class="text-center py-3">
+      Votre post
+    </h4>
+
+    <div class="update-img-text infos-card p-5">
 
       <%= simple_form_for @post  do |f| %>
-    <div class="form text-center py-3">
-      
-      <div class="form py-3 d-flex flex-wrap justify-content-center">
-        <% @post.images.each do |photo| %>
-          <div style="width:256px; height:256px;" class="p-1">
-            <img src="<%=photo%>" alt="" class="crop">
+
+        <div class="form text-center py-3">
+
+          <div class="form py-3 d-flex flex-wrap justify-content-center">
+            <% @post.images.each do |photo| %>
+              <div style="width:256px; height:256px;" class="p-1">
+                <img src="<%=photo%>" alt="" class="crop">
+              </div>
+            <%end%>
           </div>
-        <%end%>
-      </div>
-   
-    
-    
-    
-    <div> <%= @post.description %></div>
-      <div data-controller="toggle" class="mt-5 text-center">
-        <button  data-action="click->toggle#fire" data-toggle-target="dispare" class="button-annexe ">Modifier la description</button>
-        <%= link_to "Régénérer un post", regenerate_path(@post), class:"button-annexe"%>
-          <div data-toggle-target="togglableElement" class="d-none">
-              <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
-              <%= f.submit "Modifier mon post", class:"button-annexe" %>
+
+          <div>
+            <%= @post.description %>
           </div>
-      </div>
-        <div class="text-center mt-4">
-        <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
+
+          <div data-controller="toggle" class="mt-5 text-center">
+
+            <button  data-action="click->toggle#fire" data-toggle-target="dispare" class="button-annexe ">
+              Modifier la description
+            </button>
+
+            <%= link_to "Régénérer un post", regenerate_path(@post), class:"button-annexe"%>
+
+              <div data-toggle-target="togglableElement" class="d-none">
+                <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
+                <%= f.submit "Modifier mon post", class:"button-annexe" %>
+              </div>
+
+          </div>
+
+          <%# <div class="text-center mt-4">
+            <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
+          <%# </div>  %>
+
         </div>
+
       <% end %>
 
     </div>
@@ -46,18 +60,22 @@
   </div>
 
 
-  <div>
-    <h4 class="text-center" >Vue Instagram</h4>
+  <div class="container-instagram w-50 p-3">
 
-        <%= render "post_instagram", post: @post %>
+    <h4 class="text-center py-3">
+      Vue Instagram
+    </h4>
 
+    <div class="d-flex align-items-center flex-column">
+      <%= render "post_instagram", post: @post %>
+    </div>
+
+
+
+    <div class="container-buttons text-center mt-3">
+      <%= render "show_btns", post: @post %>
+    </div>
 
   </div>
-    <div class="text-center mt-3">
-      <%= link_to "Supprimer 🗑️", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
-      <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
-      <%= link_to "Programmer", new_post_programmation_path(@post),  class:"button-annexe"%>
-      <%= link_to "Publier", posts_publish_path(@post), class:"button-valider my-3" %>
-    </div>
 
 </div>
