@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     new flatpickr(this.element, {
-      enableTime: true
+      // enableTime: true
 
     });
   }
