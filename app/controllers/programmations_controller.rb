@@ -1,7 +1,7 @@
 class ProgrammationsController < ApplicationController
   def index
-    @post = Post.find(params[:post_id])
-    @programmations = @post.programmation
+    @programmations = Programmation.all
+
   end
 
   def new
