@@ -3,15 +3,6 @@
 
 }
 
-// .flex-container {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-//   justify-content: center;
-//   align-items: stretch;
-//   align-content: stretch;
-// }
-
 .infos-buttons {
   text-align: center;
   display: flex;
@@ -19,15 +10,6 @@
   justify-content: space-evenly;
   align-items: center;
 }
-
-// .carousel-card {
-//   display: flex;
-//   justify-content: space-between;
-//   img {
-//     object-fit: cover;
-//     object-position: center;
-//   }
-// }
 
 .grid {
   display: grid;
@@ -51,9 +33,3 @@
   font-size: 16px;
 
 }
-
-// .menu  ul li {
-//   display: flex;
-//   text-decoration: none;
-//   justify-content: space-around;
-// }
