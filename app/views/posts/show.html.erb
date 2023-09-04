@@ -14,8 +14,9 @@
     <div class="infos-card">
       <%= simple_form_for @post  do |f| %>
     <div class="form text-center py-3">
-      <% @post.photos.each do |photo| %>
-      <%= cl_image_tag photo.key %>
+      <% @post.images.each do |photo| %>
+      <%# <%= cl_image_tag photo.key %>
+      <img src="<%=photo%>" alt="" class="crop custom">
       <%end%>
     </div>
         <div class="champs-form mx-3">
@@ -35,7 +36,7 @@
             <div class="topbar">
               <div>
                 <%= image_tag "138893298.jpg", class:"icon" %>
-                  <b>alicebernaud</b>
+                  <b><%= current_user.instagram %></b>
               </div>
               <div>
                  <%= render "layouts/instagram/threepoints" %>
@@ -45,22 +46,23 @@
             <content select="img" style="max-width:max-content;">
           <div id="carouselExampleIndicators"  class="carousel slide custom">
             <div class="carousel-indicators">
-              <% if @post.photos.length > 1 %>
-                <% @post.photos.each_with_index do |photo, index| %>
+              <% if @post.images.length > 1 %>
+                <% @post.images.each_with_index do |photo, index| %>
                   <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
                 <% end %>
               <% end %>
             </div>
 
             <div class="carousel-inner ">
-              <% @post.photos.each_with_index do |photo, index| %>
+              <% @post.images.each_with_index do |photo, index| %>
                 <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                  <%= cl_image_tag photo.key , class:"crop custom"%>
+                  <%# <%= cl_image_tag photo.key , class:"crop custom"%>
+                  <img src="<%=photo%>" alt="" class="crop custom">
                 </div>
               <% end %>
             </div>
             </canvas>
-          <% if @post.photos.length > 1 %>
+          <% if @post.images.length > 1 %>
 
             <%= render "layouts/instagram/btns_carousel" %>
 
@@ -72,7 +74,7 @@
           <%= render "layouts/instagram/interactionsbtns" %>
 
           <div class="textcontent">
-            <b> alicebernaud </b>
+            <b> <%= current_user.instagram %> </b>
             <span style="display:inline;">
               <%= @post.description[0, 120] %>... plus
             </span>
