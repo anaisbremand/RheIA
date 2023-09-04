@@ -1,87 +1,70 @@
-<h1>Mes posts programmés</h1>
-
 
  <div>
     <%= @programmations %>
   </div>
 
-<div class="d-flex flex-nowrap">
-  <div>
-    <h4 class="text-center" >Vue Instagram</h4>
-        <div class="card carousel-card  insta text-center mt-3">
+<div class="d-flex">
+
+   <%= render "layouts/dashboard" %>
+
+  <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
+    <h1>Mes posts programmés</h1>
+    <div class = "d-flex f-row">
+      <div class="grid">
+        <% @programmations.each_with_index do |post, index| %>
+          <div class="card carousel-card m-4">
             <div class="topbar">
+
               <div>
                 <%= image_tag "138893298.jpg", class:"icon" %>
-                  <b>alicebernaud</b>
+                <b><%= current_user.instagram %></b>
               </div>
-              <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="20" height="20">
-                      <circle cx="7.1" cy="16.4" r="3.1" />
-                      <circle cx="16.5" cy="16.4" r="3.1" />
-                      <circle cx="25.9" cy="16.4" r="3.1" />
-                  </svg>
-                </div>
-              </div>
+
+              <%= render "layouts/instagram/threepoints" %>
+
+            </div>
+        <%= link_to post_path(post) do %>
             <content select="img" style="max-width:max-content;">
-          <div id="carouselExampleIndicators"  class="carousel slide custom">
-            <div class="carousel-indicators">
-              <% if @post.photos.length > 1 %>
-                <% @post.photos.each_with_index do |photo, index| %>
-                  <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+              <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
+                <div class="carousel-indicators">
+                  <% if @programmation.post.photos.length > 1 %>
+                    <% @programmation.post.photos.each_with_index do |photo, index| %>
+                      <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="carousel-inner">
+                  <% @programmation.post.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                      <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
+                    </div>
+                  <% end %>
+                </div>
+                <% if @programmation.post.photos.length > 1 %>
+                  <%= render "layouts/instagram/btns_carousel" %>
                 <% end %>
-              <% end %>
-            </div>
+              </div>
+            </content>
+        <% end %>
 
-            <div class="carousel-inner ">
-              <% @post.photos.each_with_index do |photo, index| %>
-                  <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                    <%= cl_image_tag photo.key , class:"crop custom"%>
-                  </div>
-              <% end %>
+        <%= render "layouts/instagram/interactionsbtns" %>
+
+              <div class="textcontent ">
+                <b> <%= current_user.instagram %> </b>
+                <span style="display:inline;">
+                  <%= post.description %>... plus
+                </span>
+              </div>
+            <div class="text-center m-3 button-annexe milieu">
+              <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}%>
             </div>
-            </canvas>
-          <% if @post.photos.length > 1 %>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          </div>
           <% end %>
-        </div>
-              <%# <img src="http://placehold.it/327x249" style="max-width:max-content;"> %>
-          </content>
-          <div class="interactionbtns">
-              <span>
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="20" height="20">
-                  <path d="M17.42 8.18a4.85 4.85 0 0 0-8-5.48 4.85 4.85 0 1 0-8 5.48l7.9 9z"/>
-                  </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" width="20" height="20">
-                  <path d="M18 18.2l-1.4-3.8a8.8 8.8 0 1 0-2.3 2.3z"/>
-                  </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 39.4 39.3" width="20" height="20">
-              <path d="M20.2 35.4L17 18.8 3 6.4h34.5zM17 18.8L37.4 6.4" style="stroke-width: 2;"/>
-              </svg>
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 46 46.3" width="20" height="20">
-                  <path d="M10.2 3.4v39.3L24.4 29l12.8 14.6V3.4z" style="stroke-width: 2;" />
-              </svg>
-          </div>
-
-          <div class="textcontent">
-              <b> alicebernaud </b>
-              <content select="span" style="display:inline;"> <%= @post.description %></content>
-          </div>
-
-  </div>
-    <div class="text-center mt-3">
-      <%= link_to "Supprimer 🗑️", posts_drafts_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
-      <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
-      <%= link_to "Publier", posts_publish_path(@post), class:"button-valider my-3" %>
+      </div>
     </div>
-
-
-
+    <div class="text-center column mx-5">
+      <%= link_to "Générer un autre post", new_post_path, class:"button-valider my-3 px-3" %>
+      <%= link_to "Voir mon historique", posts_historique_path, class:"button-annexe" %>
+    </div>
+  </div>
 </div>

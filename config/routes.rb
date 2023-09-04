@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get 'programmations/index'
+  get 'programmations/index'
   get 'programmations/show'
   # get 'programmations/new'
   # get 'programmations/create'
@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'
+  patch 'regenerate', to: 'posts#regenerate'
 end

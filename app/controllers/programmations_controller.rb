@@ -1,7 +1,6 @@
 class ProgrammationsController < ApplicationController
   def index
-    @programmations = Programmation.all
-
+    @programmation = @post.programmation
   end
 
   def new
