@@ -13,7 +13,7 @@
             <div class="topbar">
               <div>
                 <%= image_tag "138893298.jpg", class:"icon" %>
-                <b>alicebernaud</b>
+                <b><%= current_user.instagram %></b>
               </div>
               <%= render "layouts/instagram/threepoints" %>
             </div>
@@ -49,7 +49,7 @@
             <%= render "layouts/instagram/interactionsbtns" %>
 
               <div class="textcontent">
-                <b> alicebernaud </b>
+                <b> <%= current_user.instagram %> </b>
                 <span style="display:inline;">
                   <%= post.description %>... plus
                 </span>

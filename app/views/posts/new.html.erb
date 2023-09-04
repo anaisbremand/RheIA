@@ -13,6 +13,8 @@
     <div class = "w-50 mt-4">
       <%= simple_form_for @post do |f| %>
         <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ' %>
+        <%= f.input :many_imgs, label: "Nombre d'images à générer", placeholder: '3' %>
+
         <%= f.input :photos, as: :file, input_html: {multiple: true} %>
         <div class="text-center mt-4">
         <%= f.submit "Générer votre post", class:"button-valider mt-3"%>

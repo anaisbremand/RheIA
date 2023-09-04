@@ -16,9 +16,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     @post.description = description_from(ask_chatgpt(@post.prompt))
-    array_img = ask_dalle(ask_chatgpt(@post.prompt))
+    array_img = ask_dalle(ask_chatgpt(@post.prompt), @post.many_imgs)
     array_img.each do |img|
-      @post.photos.attach(io: URI.open(img['url']), filename: "post.jpg", content_type: "image/jpg")
+      @post.images << img['url']
     end
 
     if @post.save
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:prompt, :description, photos: [])
+    params.require(:post).permit(:prompt, :description, :many_imgs, photos: [])
   end
 
   def set_post
@@ -87,9 +87,9 @@ class PostsController < ApplicationController
     return reponse_gpt.match(/\{(.*?)\}/)[1]
   end
 
-  def ask_dalle(prompt)
+  def ask_dalle(prompt, many_imgs)
     url = "https://api.openai.com/v1/images/generations"
-    payload = { prompt: img_from(prompt), n: 4, size: "512x512" }.to_json
+    payload = { prompt: img_from(prompt), n: many_imgs, size: "512x512" }.to_json
     headers = { Authorization: "Bearer #{ENV.fetch('OPENAI_TOKEN')}", 'Content-Type': 'application/json' }
     response = RestClient.post(url, payload, headers)
     reponse_dalle = JSON.parse(response.body)
