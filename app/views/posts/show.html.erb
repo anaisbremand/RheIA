@@ -13,6 +13,9 @@
 
     <div class="infos-card">
 
+      <%= simple_form_for @post  do |f| %>
+    <div class="form text-center py-3">
+      
       <div class="form py-3 d-flex flex-wrap justify-content-center">
         <% @post.images.each do |photo| %>
           <div style="width:256px; height:256px;" class="p-1">
@@ -20,13 +23,19 @@
           </div>
         <%end%>
       </div>
-
-
-      <%= simple_form_for @post do |f| %>
-        <div class="champs-form mx-3">
-          <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
-        </div>
-
+   
+    
+    
+    
+    <div> <%= @post.description %></div>
+      <div data-controller="toggle" class="mt-5 text-center">
+        <button  data-action="click->toggle#fire" data-toggle-target="dispare" class="button-annexe ">Modifier la description</button>
+        <%= link_to "Régénérer un post", regenerate_path(@post), class:"button-annexe"%>
+          <div data-toggle-target="togglableElement" class="d-none">
+              <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
+              <%= f.submit "Modifier mon post", class:"button-annexe" %>
+          </div>
+      </div>
         <div class="text-center mt-4">
         <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
         </div>
@@ -41,6 +50,7 @@
     <h4 class="text-center" >Vue Instagram</h4>
 
         <%= render "post_instagram", post: @post %>
+
 
   </div>
     <div class="text-center mt-3">
