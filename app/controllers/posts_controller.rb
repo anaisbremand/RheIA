@@ -3,7 +3,7 @@ require 'json'
 require 'open-uri'
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update publish destroy]
+  before_action :set_post, only: %i[show edit update publish destroy regenerate]
 
   def new
     @post = Post.new
@@ -33,6 +33,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    new_description = params[:post][:description]
+    @post.description = new_description
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render 'posts/show', status: :unprocessable_entity
+    end
   end
 
   def publish
@@ -50,6 +57,13 @@ class PostsController < ApplicationController
 
   def historique
     @historique = Post.where(draft: false).order('created_at DESC')
+  end
+
+  def regenerate
+    @post.description = description_from(ask_chatgpt(@post.prompt))
+    if @post.save
+      redirect_to post_path(@post)
+    end
   end
 
   private
