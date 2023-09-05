@@ -8,16 +8,16 @@
 
 <div class="container-show d-flex flex-nowrap">
 
-  <div class="container-prompt-img-description prompt w-50 p-3">
+  <div class="container-prompt-img-description prompt w-50 px-3 py-3">
 
     <h4 class="text-center py-3">
       Votre post
     </h4>
 
-    <div class="update-img-text infos-card p-5">
+    <div class="update-img-text infos-card px-5 pt-3">
 
 
-      <%= simple_form_for @post  do |f| %>
+
 
         <div class="form text-center py-3">
 
@@ -37,21 +37,24 @@
 
             <div class="d-flex justify-content-center mt-3 flex-wrap">
 
-              <button style="flex-basis:40%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
-                Modifier la description
+              <button style="flex-basis:47%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
+                Modifier ma description
               </button>
-              <%= link_to "Régénérer un post", posts_publish_path(@post), style: "flex-basis:40%", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
+              <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
+                <%= f.submit "Regenerer le post", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
+              <% end %>
+
 
               <div style="flex-basis:100%" data-toggle-target="textarea" class="d-none">
-
-                <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
-                <div class="d-flex justify-content-around">
-                    <%= f.submit "Modifier mon post", class: "button-annexe", style: "flex-basis:40%" %>
+                <%= simple_form_for @post  do |f| %>
+                  <%= f.input :description, label: false, placeholder: @post.description, input_html: { id:"modif-description" }%>
+                  <div class="d-flex justify-content-around">
                     <button data-action="click->toggle#cancelArea" class="button-cancel" style= "flex-basis:40%">
-                      cancel
+                      Annuler mes modifications
                     </button>
-                </div>
-
+                    <%= f.submit "Modifier ma description", class: "button-annexe", style: "flex-basis:40%" %>
+                  </div>
+                <% end %>
               </div>
 
             </div>
@@ -62,13 +65,8 @@
 
         </div>
 
-      <% end %>
     </div>
 
-      <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off' } do |f| %>
-        <%= f.text_field :new_prompt, input_html: { value: "", placeholder: "Re-taper votre post" } %>
-        <%= f.submit "Regenerer le post"%>
-      <% end %>
 
     </div>
 
@@ -81,7 +79,7 @@
       Vue Instagram
     </h4>
 
-    <div class="d-flex align-items-center flex-column">
+    <div class="d-flex align-items-center flex-column infos-card py-4">
       <%= render "post_instagram", post: @post %>
     </div>
 
