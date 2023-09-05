@@ -2,16 +2,27 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="toggle"
 export default class extends Controller {
-  static targets = ["togglableElement", "dispare"]
+  static targets = ["textarea", "modif", "regen"]
 
   connect() {
-    console.log("Hello from toggle_controller.js")
+    console.log("toggle_controller.js prêt à toggle text area")
   }
 
-  fire(event) {
+  fireArea(event) {
     event.preventDefault();
-    this.togglableElementTarget.classList.toggle("d-none");
-    this.dispareTarget.classList.toggle("d-none");
+
+    this.modifTarget.classList.toggle("d-none");
+    this.regenTarget.classList.toggle("d-none");
+
+    this.textareaTarget.classList.toggle("d-none");
+  }
+
+  cancelArea(event) {
+    event.preventDefault();
+    console.log("mon bouton cancel marche !");
+    this.modifTarget.classList.toggle("d-none");
+    this.regenTarget.classList.toggle("d-none");
+    this.textareaTarget.classList.toggle("d-none");
   }
 
 }
