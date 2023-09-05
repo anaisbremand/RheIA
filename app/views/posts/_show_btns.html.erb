@@ -1,4 +1,4 @@
-<%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
+<%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel" %>
       <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
       <%= link_to "Programmer", new_post_programmation_path(post),  class:"button-annexe"%>
       <%= link_to "Publier", posts_publish_path(post), class:"button-valider my-3" %>

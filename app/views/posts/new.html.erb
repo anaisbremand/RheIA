@@ -7,12 +7,13 @@
     </ul>
 </nav>
 
- <div class="d-flex justify-content-center">
+ <div class="d-flex justify-content-center" data-controller="ia-generator">
   <div class=" w-75 infos-card rounded-4 px-7 mt-4 d-flex flex-column align-items-center">
     <h1 class="mt-4">Votre prochaine publication Instagram</h1>
     <div class = "w-75  px-4 mt-4">
       <%= simple_form_for @post do |f| %>
-        <%= f.input :prompt, label: "Prompt", placeholder: 'Décrivez nous ce que vous souhaitez écrire dans votre post Instagram' %>
+        <%= f.input :prompt, label: "Prompt", placeholder: 'Décrivez nous ce que vous souhaitez écrire dans votre post Instagram', input_html: { data: {action:"blur->ia-generator#blur", ia_generator_target:"prompt"} } %>
+        <p class="d-none text-danger fst-italic", data-ia-generator-target="text" style="font-size: 12px;">le prompt est obligatoire</p>
         <div class=" d-flex justify-content-space-between mt-4">
           <div class="form-group">
           <%= f.input :many_imgs, label: "Nombre d'images à générer (optionnel)" do %>
