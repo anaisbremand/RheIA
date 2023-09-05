@@ -13,9 +13,9 @@
 
     <div class="infos-card">
 
-      <%= simple_form_for @post  do |f| %>
+    <%= simple_form_for @post  do |f| %>
     <div class="form text-center py-3">
-      
+
       <div class="form py-3 d-flex flex-wrap justify-content-center">
         <% @post.images.each do |photo| %>
           <div style="width:256px; height:256px;" class="p-1">
@@ -23,36 +23,33 @@
           </div>
         <%end%>
       </div>
-   
-    
-    
-    
+
     <div> <%= @post.description %></div>
       <div data-controller="toggle" class="mt-5 text-center">
         <button  data-action="click->toggle#fire" data-toggle-target="dispare" class="button-annexe ">Modifier la description</button>
-        <%= link_to "Régénérer un post", regenerate_path(@post), class:"button-annexe"%>
+        <%= link_to "Régénérer un post", posts_publish_path(@post), class:"button-annexe"%>
           <div data-toggle-target="togglableElement" class="d-none">
               <%= f.input :description,  placeholder: @post.description, class:"mx-3" %>
-              <%= f.submit "Modifier mon post", class:"button-annexe" %>
+              <%= f.submit "Modifier mon post" %>
           </div>
       </div>
         <div class="text-center mt-4">
         <%# <%= f.submit "Regénérer", class:"button-valider mt-3"%>
         </div>
       <% end %>
-
     </div>
-
+    <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off' } do |f| %>
+      <%= f.text_field :new_prompt, input_html: { value: "", placeholder: "Re-taper votre post" } %>
+      <%= f.submit "Regenerer le post"%>
+    <% end %>
   </div>
 
 
   <div>
     <h4 class="text-center" >Vue Instagram</h4>
-
         <%= render "post_instagram", post: @post %>
-
-
   </div>
+
     <div class="text-center mt-3">
       <%= link_to "Supprimer 🗑️", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-annexe" %>
       <%= link_to "Sauvegarder", posts_drafts_path, class:"button-annexe"%>
