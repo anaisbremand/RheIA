@@ -60,8 +60,8 @@ class PostsController < ApplicationController
   end
 
   def regenerate
-    new_prompt = params[:new_prompt]
-    @post.description = description_from(ask_chatgpt(new_prompt))
+    # new_prompt = params[:new_prompt]
+    @post.description = description_from(ask_chatgpt(@post.prompt))
     if @post.save
       redirect_to post_path(@post)
     end
