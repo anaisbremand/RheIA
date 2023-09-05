@@ -38,10 +38,10 @@
             <div class="d-flex justify-content-center mt-3 flex-wrap">
 
               <button style="flex-basis:47%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
-                Modifier ma description
+                Modifier ma description ✏️
               </button>
               <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
-                <%= f.submit "Regenerer le post", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
+                <%= f.submit "Recréer une description 🤔", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
               <% end %>
 
 
@@ -50,9 +50,9 @@
                   <%= f.input :description, label: false, placeholder: @post.description, input_html: { id:"modif-description" }%>
                   <div class="d-flex justify-content-around">
                     <button data-action="click->toggle#cancelArea" class="button-cancel" style= "flex-basis:40%">
-                      Annuler mes modifications
+                      Annuler ❌
                     </button>
-                    <%= f.submit "Modifier ma description", class: "button-annexe", style: "flex-basis:40%" %>
+                    <%= f.submit "Modifier ✔️", class: "button-annexe", style: "flex-basis:40%" %>
                   </div>
                 <% end %>
               </div>
@@ -85,7 +85,7 @@
 
 
 
-    <div class="container-buttons text-center mt-3">
+    <div class="container-buttons d-flex justify-content-evenly flex-wrap py-3">
       <%= render "show_btns", post: @post %>
     </div>
 
