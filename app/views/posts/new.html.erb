@@ -7,19 +7,24 @@
     </ul>
 </nav>
 
-<%# <div class="d-flex justify-content-center"> %>
-  <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
-    <h1>Votre prochaine publication Instagram</h1>
-    <div class = "w-50 mt-4">
+ <div class="d-flex justify-content-center">
+  <div class=" w-75 infos-card rounded-4 px-7 mt-4 d-flex flex-column align-items-center">
+    <h1 class="mt-4">Votre prochaine publication Instagram</h1>
+    <div class = "w-75  px-4 mt-4">
       <%= simple_form_for @post do |f| %>
-        <%= f.input :prompt, label: "Prompt", placeholder: 'Ecrivez quelque chose ici ' %>
-        <%= f.input :many_imgs, label: "Nombre d'images à générer", placeholder: '3' %>
-
-        <%= f.input :photos, as: :file, input_html: {multiple: true} %>
-        <div class="text-center mt-4">
-        <%= f.submit "Générer votre post", class:"button-valider mt-3"%>
+        <%= f.input :prompt, label: "Prompt", placeholder: 'Décrivez nous ce que vous souhaitez écrire dans votre post Instagram' %>
+        <div class=" d-flex justify-content-space-between mt-4">
+          <div class="form-group">
+          <%= f.input :many_imgs, label: "Nombre d'images à générer (optionnel)" do %>
+            <%= f.select :many_imgs, (1..4).to_a, prompt: 'choisisez un chiffre', class:"form-select" %>
+          <% end %>
+          </div>
+        <%= f.input :photos, as: :file, input_html: {multiple: true}, label: "Télécharger vos images (optionnel)" %>
+        </div>
+        <div class="text-center mt-5">
+        <%= f.submit "Générer votre post", class:"button-valider mb-5 "%>
         </div>
         <% end %>
       </div>
   </div>
-<%# </div> %>
+</div>
