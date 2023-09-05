@@ -31,7 +31,7 @@
                 <div class="carousel-inner">
                   <% post.photos.each_with_index do |photo, index| %>
                     <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                      <%= cl_image_tag photo.key,  class:"crop custom-annexe"%>
+                      <img src="<%=photo%>" alt="" class="crop custom">
                     </div>
                   <% end %>
                 </div>
