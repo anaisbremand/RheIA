@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'
-  patch 'regenerate', to: 'posts#regenerate'
+  patch 'regenerate/:id', to: 'posts#regenerate', as: "regenerate"
 end
