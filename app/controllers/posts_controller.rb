@@ -15,16 +15,17 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.description = description_from(ask_chatgpt(@post.prompt))
-    array_img = ask_dalle(ask_chatgpt(@post.prompt), @post.many_imgs)
-    array_img.each do |img|
-      @post.images << img['url']
-    end
-    if @post.save
+    if @post.valid?
+      @post.description = description_from(ask_chatgpt(@post.prompt))
+      array_img = ask_dalle(ask_chatgpt(@post.prompt), @post.many_imgs)
+      array_img.each do |img|
+        @post.images << img['url']
+      end
+      @post.save
       redirect_to post_path(@post)
     else
       # Gestion des erreurs, par exemple réafficher le formulaire
-      render json: { errors: @post.errors.full_messages }, status: 422
+      render :new
     end
   end
 

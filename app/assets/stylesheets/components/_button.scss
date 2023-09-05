@@ -72,3 +72,27 @@ top:1px;
   display: flex;
   align-self: center;
 }
+
+.button-cancel {
+  border: none;
+  width: 50%;
+  box-shadow: 0px 0px 8px 0px #db282b;
+  background:transparent;
+  background-color: transparent;
+  border-radius:4px;
+  display:inline-block;
+  cursor:pointer;
+  color:#b22022;
+  font-size:16px;
+  padding:8px 32px;
+  margin-bottom: 10px;
+  text-decoration:none;
+  text-shadow:0px 0px 0px #f5f5f7;
+}
+
+
+// .button-cancel:hover {
+//   background:linear-gradient(to bottom, #f56c83 5%, #fbc5c5 100%, transparent 80%);
+//   background-color:linear-gradient(to bottom, #e53549 5%, transparent 50%, #d6d1d1 45%);
+
+// }
