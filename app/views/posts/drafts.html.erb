@@ -50,9 +50,7 @@
                   <%= post.description %>... plus
                 </span>
               </div>
-            <div class="text-center m-3 button-annexe milieu">
-              <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer ce post ?"}%>
-            </div>
+              <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
           </div>
           <% end %>
       </div>
