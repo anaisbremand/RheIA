@@ -21,33 +21,56 @@
 
               <div class="form-group  d-flex flex-row">
                 <%= f.input :many_imgs, label: "Nombre d'images à générer (optionnel)" do %>
-                  <%= f.select :many_imgs, (1..4).to_a, prompt: 'choisisez un chiffre', class:"form-select" %>
+                  <%= f.select :many_imgs, (1..4).to_a, prompt: 'choisissez un chiffre', class:"form-select" %>
                 <% end %>
               </div>
               <div class="form-photo">
               <%= f.input :photos, as: :file, input_html: {multiple: true}, label: "Télécharger vos images (optionnel)" %>
               </div>
             </div>
-
-            <div class="text-center mt-5" data-action="click->loader#fire">
-              <%= f.submit "Générer votre post", class:"button-valider mb-5 selector"%>
+            <div class="text-center mt-5">
+              <%= f.submit "Générer votre post", class:"button-valider mb-5 selector", "data-action":"click->loader#fire"%>
             </div>
           <% end %>
         </div>
       </div>
     </div>
 
-    <div class="loader d-none" data-loader-target="chargement">
-      <span class="lettre">C</span>
-      <span class="lettre">H</span>
-      <span class="lettre">A</span>
-      <span class="lettre">R</span>
-      <span class="lettre">G</span>
-      <span class="lettre">E</span>
-      <span class="lettre">M</span>
-      <span class="lettre">E</span>
-      <span class="lettre">N</span>
-      <span class="lettre">T</span>
+    <div class="d-none loader" data-loader-target="chargement">
+
+      <div class="d-flex flex-wrap">
+        <div class="mot">Pour la science</div>
+        <div class="mot2">Le rake est vert</div>
+        <div class="mot3">git push origin master</div>
+        <div class="mot4">Le wagon</div>
+        <div class="mot5">"Théo, je veux être toi plus tard" - Adam Lamouri, 2023</div>
+        <div class="mot11">Jean-Loup : le 4e membre de Rhéia</div>
+      </div>
+
+      <div class="titre">
+        <span class="lettre">C</span>
+        <span class="lettre">H</span>
+        <span class="lettre">A</span>
+        <span class="lettre">R</span>
+        <span class="lettre">G</span>
+        <span class="lettre">E</span>
+        <span class="lettre">M</span>
+        <span class="lettre">E</span>
+        <span class="lettre">N</span>
+        <span class="lettre">T</span>
+      </div>
+
+      <div class="d-flex flex-wrap">
+        <div class="mot6">Inscrivez-vous sur Rooker</div>
+        <div class="mot7">Visit for Me c'est le futur</div>
+        <div class="mot8">Antoine notre 1er amour</div>
+        <div class="mot9">Dylane notre grand amour</div>
+        <div class="mot10">Loris le best</div>
+        <div class="mot12">Jean-Gui le meilleur modeur</div>
+        <div class="mot13">Maiwenn, notre maman de l'été</div>
+
+      </div>
+
     </div>
   </div>
 

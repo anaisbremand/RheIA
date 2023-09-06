@@ -6,19 +6,15 @@
     </ul>
 </div>
 
-<div class="container-show d-flex flex-nowrap">
 
-  <div class="container-prompt-img-description prompt w-50 px-3 py-3">
+<div id="container">
+  <div class="container-show d-flex flex-nowrap">
+    <div class="container-prompt-img-description prompt w-50 px-3 py-3">
+      <h4 class="text-center py-3">
+        Votre post
+      </h4>
 
-    <h4 class="text-center py-3">
-      Votre post
-    </h4>
-
-    <div class="update-img-text infos-card px-5 pt-3">
-
-
-
-
+      <div class="update-img-text infos-card px-5 pt-3">
         <div class="form text-center py-3">
 
           <div class="form py-3 d-flex flex-wrap justify-content-center">
@@ -40,10 +36,9 @@
               <button style="flex-basis:47%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
                 Modifier ma description ✏️
               </button>
-              <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
-                <%= f.submit "Recréer une description 🤔", class:"button-annexe m-2", data: { toggle_target: "regen" }%>
-              <% end %>
-
+                <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
+                  <%= f.submit "Recréer une description 🤔", class:"button-annexe m-2", data: { toggle_target: "regen" } %>
+                <% end %>
 
               <div style="flex-basis:100%" data-toggle-target="textarea" class="d-none">
                 <%= simple_form_for @post  do |f| %>
@@ -56,22 +51,15 @@
                   </div>
                 <% end %>
               </div>
-
             </div>
-
           </div>
-
-            <%# <%= link_to "Régénérer un post", posts_publish_path(@post), class:"button-annexe"%>
-
+          <%# <%= link_to "Régénérer un post", posts_publish_path(@post), class:"button-annexe"%>
         </div>
-
+      </div>
     </div>
 
 
-    </div>
-
-
-
+    <div class="container-instagram w-50 p-3">
 
   <div class="container-instagram w-50 p-3">
 
@@ -83,12 +71,14 @@
       <%= render "insta_show", post: @post %>
     </div>
 
+      <div class="d-flex align-items-center flex-column infos-card py-4">
+        <%= render "post_instagram", post: @post %>
+      </div>
 
+      <div class="container-buttons d-flex justify-content-evenly flex-wrap py-3">
+        <%= render "show_btns", post: @post %>
+      </div>
 
-    <div class="container-buttons d-flex justify-content-evenly flex-wrap py-3">
-      <%= render "show_btns", post: @post %>
     </div>
-
   </div>
-
 </div>
