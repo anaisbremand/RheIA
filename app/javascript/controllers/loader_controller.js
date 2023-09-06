@@ -12,5 +12,7 @@ export default class extends Controller {
     this.togglableElementTarget.classList.toggle("d-none");
     this.chargementTarget.classList.toggle("d-none");
     this.breadcrumbTarget.classList.toggle("d-none");
+    const navbar = document.querySelector("#menu");
+    navbar.classList.add("d-none");
   }
 }
