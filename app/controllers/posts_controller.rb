@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post.update(draft: false)
+    @post.update(draft: false, program: nil)
   end
 
   def destroy

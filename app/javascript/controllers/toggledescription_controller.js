@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["description", "plus"]
 
   connect() {
-    console.log("pret à toggle ...plus !");
   }
 
   fireplus() {
@@ -18,6 +17,5 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log("bien déconnecté");
   }
 }
