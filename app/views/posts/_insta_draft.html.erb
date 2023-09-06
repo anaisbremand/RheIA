@@ -61,7 +61,8 @@
 
   </div>
 
-  <%= link_to "Modifier", post_path(post), class:"button-annexe milieu" %>
-  <%= link_to "🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
-
+  <div class="d-flex flex-row justify-content-around">
+    <%= link_to "✏️", post_path(post), class:"button-annexe milieu" %>
+    <%= link_to "🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
+  </div>
 </div>
