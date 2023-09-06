@@ -47,7 +47,7 @@
     <span style="display:inline;" data-action="click->toggledescription#fireplus">
       <span data-toggledescription-target="description">
         <% if post.description.size > 64 %>
-          <%= post.description[0..64] %>...plus
+          <%= post.description[0..64] %><span style="color: grey;">...plus</span>
         <% else %>
           <%= post.description %>
         <% end %>
