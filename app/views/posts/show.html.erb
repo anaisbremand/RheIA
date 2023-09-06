@@ -20,7 +20,7 @@
           <div class="form py-3 d-flex flex-wrap justify-content-center">
             <% @post.images.each do |photo| %>
               <div style="flex-basis:33%" class="p-1">
-                <img src="<%=photo%>" alt="" class="crop">
+                <img src="<%=photo%>" alt="" class="crop" loading="lazy">
               </div>
             <%end%>
           </div>
@@ -33,7 +33,7 @@
 
             <div class="d-flex justify-content-center mt-3 flex-wrap">
 
-              <button style="flex-basis:47%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
+              <button style="flex-basis:38%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
                 Modifier ma description ✏️
               </button>
                 <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
