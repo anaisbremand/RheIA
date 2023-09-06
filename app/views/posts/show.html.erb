@@ -61,9 +61,15 @@
 
     <div class="container-instagram w-50 p-3">
 
-      <h4 class="text-center py-3">
-        Vue Instagram
-      </h4>
+  <div class="container-instagram w-50 p-3">
+
+    <h4 class="text-center py-3">
+      Vue Instagram
+    </h4>
+
+    <div class="d-flex align-items-center flex-column infos-card py-4">
+      <%= render "insta_show", post: @post %>
+    </div>
 
       <div class="d-flex align-items-center flex-column infos-card py-4">
         <%= render "post_instagram", post: @post %>

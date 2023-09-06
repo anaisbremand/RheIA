@@ -28,7 +28,7 @@
 	text-transform: capitalize;
 }
 #menu a.dropdown-arrow:after {
-	content: "\2B9F";
+	content: "";
 	margin-left: 5px;
 }
 #menu li a:hover {
@@ -97,4 +97,8 @@
 	#menu input:checked + label {color:white}
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
+}
+
+.special-color {
+  color: #841484;
 }
