@@ -60,28 +60,34 @@ class PostsController < ApplicationController
     @historique = Post.where(draft: false).order('created_at DESC')
   end
 
+  def programs
+    array = Post.all
+    @programmations = array.reject { |post| post.program == nil }
+  end
+
   def regenerate
-    # new_prompt = params[:new_prompt]
     @post.description = description_from(ask_chatgpt(@post.prompt))
-    if @post.save
-      redirect_to post_path(@post)
-    end
+    redirect_to post_path(@post) if @post.save
   end
 
   def programmation
-    @programmation = Programmation.new
-    @programmation.post = @post
-    if @programmation.save
-      redirect_to posts_programmation_path
+    @post.update(program: params[:post][:program])
+    if @post.save
+      redirect_to posts_programs_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+
   private
 
   def post_params
     params.require(:post).permit(:prompt, :description, :many_imgs, photos: [])
+  end
+
+  def program_params
+    params.require(:post).permit(:program)
   end
 
   def set_post

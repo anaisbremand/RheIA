@@ -2,7 +2,7 @@
   <div class="d-flex flex-column menu justify-content-around">
     <p class="<%= controller.action_name == "drafts" ? "special-color" : "" %>"><%= link_to "Mes posts sauvegardés", posts_drafts_path %> </p>
     <p class="<%= controller.action_name == "historique" ? 'special-color' : "" %>"><%= link_to "Mon historique de post", posts_historique_path %> </p>
-    <p class="<%= controller.action_name == "programmation" ? 'special-color' : "" %>"><%= link_to "Mon posts programmés", programmations_show_path %> </p>
+    <p class="<%= controller.action_name == "programmation" ? 'special-color' : "" %>"><%= link_to "Mon posts programmés", posts_programs_path %> </p>
     <p><%= link_to "Générateur de post", new_post_path, class:"button-valider-annexe"%></p>
   </div>
 </div>

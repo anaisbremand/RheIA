@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  get 'programmations/index'
-  get 'programmations/show'
-  # get 'programmations/new'
-  # get 'programmations/create'
-  # get 'programmations/update'
-  # get 'programmations/edit'
-  # get 'programmations/destroy'
-  # get 'posts/index'
-  # get 'posts/show'
-  # get 'posts/new'
-  # get 'posts/create'
-  # get 'posts/edit'
-  # get 'posts/update'
-  # get 'posts/destroy'
+
   devise_for :users
 
   devise_scope :user do
@@ -31,10 +18,13 @@ Rails.application.routes.draw do
 
   # resources :programmations, only: [:edit, :update, :index]
 
+  get 'programmations', to: 'posts#programs', as: 'posts/programs'
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'
   patch 'regenerate/:id', to: 'posts#regenerate', as: "regenerate"
   # get 'programmation/:id', to: 'posts#programmation', as: 'posts/programmation'
-  post 'programmation/:id', to: 'posts#programmation', as: 'posts/programmation'
+
+  get 'post/:id/programmation', to: 'posts#edit', as: 'post/edit'
+  patch 'post/:id/programmation', to: 'posts#programmation', as: 'programme_post'
 end
