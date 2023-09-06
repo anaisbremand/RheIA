@@ -5,6 +5,7 @@ require 'open-uri'
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update publish destroy regenerate programmation]
 
+
   def new
     @post = Post.new
   end
