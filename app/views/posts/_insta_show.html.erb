@@ -41,7 +41,16 @@
 
           <div class="textcontent">
             <b> <%= current_user.instagram %> </b>
-            <span style="display:inline;">
-              <%= post.description[0, 120] %>... plus
-            </span>
+            <span style="display:inline;" data-action="click->toggledescription#fireplus">
+      <span data-toggledescription-target="description">
+        <% if post.description.size > 64 %>
+          <%= post.description[0..64] %>...plus
+        <% else %>
+          <%= post.description %>
+        <% end %>
+      </span>
+      <span data-toggledescription-target="plus" class="d-none"><%= post.description %></span>
+    </span>
           </div>
+
+</div>

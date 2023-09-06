@@ -1,0 +1,67 @@
+<div class="card carousel-card m-4">
+
+  <div class="topbar">
+
+    <div>
+      <%= image_tag "138893298.jpg", class:"icon" %>
+      <b><%= current_user.instagram %></b>
+    </div>
+
+    <%= render "layouts/instagram/threepoints" %>
+
+  </div>
+
+
+    <content select="img">
+      <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
+
+        <div class="carousel-indicators">
+          <% if post.images.length > 1 %>
+
+            <% post.images.each_with_index do |photo, index| %>
+              <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+            <% end %>
+
+          <% end %>
+        </div>
+
+        <div class="carousel-inner">
+
+          <% post.images.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+              <img src="<%=photo%>" alt="" class="crop custom-annexe">
+            </div>
+          <% end %>
+
+        </div>
+
+        <% if post.images.length > 1 %>
+          <%= render "layouts/instagram/btns_carousel" %>
+        <% end %>
+
+      </div>
+    </content>
+
+
+  <%= render "layouts/instagram/interactionsbtns" %>
+
+  <div class="textcontent">
+    <b> <%= current_user.instagram %> </b>
+
+    <span style="display:inline;" data-action="click->toggledescription#fireplus">
+      <span data-toggledescription-target="description">
+        <% if post.description.size > 64 %>
+          <%= post.description[0..64] %>...plus
+        <% else %>
+          <%= post.description %>
+        <% end %>
+      </span>
+      <span data-toggledescription-target="plus" class="d-none"><%= post.description %></span>
+    </span>
+
+  </div>
+
+  <%= link_to "Modifier", post_path(post), class:"button-annexe milieu" %>
+  <%= link_to "🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
+
+</div>
