@@ -45,7 +45,7 @@
 
   <%= render "layouts/instagram/interactionsbtns" %>
 
-  <div class="textcontent">
+  <div class="textcontent" data-controller="toggledescription">
     <b> <%= current_user.instagram %> </b>
 
     <span style="display:inline;" data-action="click->toggledescription#fireplus">

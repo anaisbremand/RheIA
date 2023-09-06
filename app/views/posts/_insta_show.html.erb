@@ -39,9 +39,10 @@
 
           <%= render "layouts/instagram/interactionsbtns" %>
 
-          <div class="textcontent">
-            <b> <%= current_user.instagram %> </b>
-            <span style="display:inline;" data-action="click->toggledescription#fireplus">
+          <div class="textcontent" data-controller="toggledescription">
+    <b> <%= current_user.instagram %> </b>
+
+    <span style="display:inline;" data-action="click->toggledescription#fireplus">
       <span data-toggledescription-target="description">
         <% if post.description.size > 64 %>
           <%= post.description[0..64] %>...plus
@@ -51,6 +52,7 @@
       </span>
       <span data-toggledescription-target="plus" class="d-none"><%= post.description %></span>
     </span>
-          </div>
+
+  </div>
 
 </div>
