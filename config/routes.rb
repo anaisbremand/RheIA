@@ -26,13 +26,15 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :programmations, only: [:show, :create, :new]
+    # resources :programmations, only: [:show, :create, :new]
   end
 
-  resources :programmations, only: [:edit, :update, :index]
+  # resources :programmations, only: [:edit, :update, :index]
 
   get 'drafts', to: 'posts#drafts', as: 'posts/drafts'
   get 'historique', to: 'posts#historique', as: 'posts/historique'
   get 'publish/:id', to: 'posts#publish', as: 'posts/publish'
   patch 'regenerate/:id', to: 'posts#regenerate', as: "regenerate"
+  # get 'programmation/:id', to: 'posts#programmation', as: 'posts/programmation'
+  post 'programmation/:id', to: 'posts#programmation', as: 'posts/programmation'
 end
