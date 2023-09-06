@@ -30,16 +30,14 @@
 
             </content>
             <% end %>
-            <%# <div class="cta">[[cta]]
-                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" width="15" height="15">
-                    <path d="M10 3l13.2 13-13 14" style="stroke: #1c8bb6;stroke-width: 5;" />
-                </svg>
-            </div> %>
+
             <%= render "layouts/instagram/interactionsbtns" %>
 
-              <div class="textcontent">
-                <b> <%= current_user.instagram %> </b>
-                <span style="display:inline;">
-                  <%= post.description %>... plus
-                </span>
-              </div>
+            <div class="textcontent">
+              <b> <%= current_user.instagram %> </b>
+              <span style="display:inline;">
+                <%= post.description %>... plus
+              </span>
+            </div>
+
+</div>
