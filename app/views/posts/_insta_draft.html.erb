@@ -11,9 +11,8 @@
 
   </div>
 
-  <%= link_to post_path(post) do %>
 
-    <content select="img" style="max-width:max-content;">
+    <content select="img">
       <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
 
         <div class="carousel-indicators">
@@ -43,17 +42,23 @@
       </div>
     </content>
 
-  <% end %>
 
   <%= render "layouts/instagram/interactionsbtns" %>
 
-  <div class="textcontent ">
+  <div class="textcontent">
     <b> <%= current_user.instagram %> </b>
+
     <span style="display:inline;">
-      <%= post.description %>... plus
+      <% if post.description.size > 64  %>
+        <%= post.description[0..64] %>...plus
+      <% else %>
+        <%= post.description %>
+      <% end %>
     </span>
+
   </div>
 
+  <%= link_to "Modifier", post_path(post), class:"button-annexe milieu" %>
   <%= link_to "🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
 
 </div>

@@ -1,43 +1,60 @@
 <div class="card carousel-card m-3">
-            <div class="topbar">
-              <div>
-                <%= image_tag "138893298.jpg", class:"icon" %>
-                <b><%= current_user.instagram %></b>
-              </div>
-              <%= render "layouts/instagram/threepoints" %>
-            </div>
-            <%= link_to "http://instagram.com" do %>
-            <content select="img" style="max-width:max-content;">
-            <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
-              <div class="carousel-indicators">
-                <% if post.images.length > 1 %>
-                  <% post.images.each_with_index do |photo, index| %>
-                    <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="carousel-inner">
-                <% post.images.each_with_index do |photo, index| %>
-                    <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                      <img src="<%=photo%>" alt="" class="crop custom-annexe">
-                    </div>
-                <% end %>
-              </div>
-              <% if post.images.length > 1 %>
-                <%= render "layouts/instagram/btns_carousel" %>
-              <% end %>
-            </div>
 
-            </content>
+  <div class="topbar">
+    <div>
+      <%= image_tag "138893298.jpg", class:"icon" %>
+      <b><%= current_user.instagram %></b>
+    </div>
+    <%= render "layouts/instagram/threepoints" %>
+  </div>
+
+    <content select="img">
+
+      <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
+
+        <div class="carousel-indicators">
+
+          <% if post.images.length > 1 %>
+            <% post.images.each_with_index do |photo, index| %>
+              <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator">
+              </div>
             <% end %>
+          <% end %>
 
-            <%= render "layouts/instagram/interactionsbtns" %>
+        </div>
 
-            <div class="textcontent">
-              <b> <%= current_user.instagram %> </b>
-              <span style="display:inline;">
-                <%= post.description %>... plus
-              </span>
-            </div>
+        <div class="carousel-inner">
+
+          <% post.images.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                <img src="<%=photo%>" alt="" class="crop custom-annexe">
+              </div>
+          <% end %>
+
+        </div>
+
+        <%= render "layouts/instagram/btns_carousel" if post.images.length > 1 %>
+
+      </div>
+
+    </content>
+
+  <%= render "layouts/instagram/interactionsbtns" %>
+
+  <div class="textcontent">
+    <b> <%= current_user.instagram %> </b>
+
+    <span style="display:inline;">
+      <% if post.description.size > 64  %>
+        <%= post.description[0..64] %>...plus
+      <% else %>
+        <%= post.description %>
+      <% end %>
+    </span>
+
+  </div>
+
+  <%= link_to "voir sur instagram", "http://instagram.com", class: "btn btn-primary", target: "_blank" %>
+
 
 </div>

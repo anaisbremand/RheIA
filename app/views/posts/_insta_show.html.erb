@@ -42,6 +42,10 @@
           <div class="textcontent">
             <b> <%= current_user.instagram %> </b>
             <span style="display:inline;">
-              <%= post.description[0, 120] %>... plus
+              <% if post.description.size > 64  %>
+                <%= post.description[0..64] %>...plus
+              <% else %>
+                <%= post.description %>
+              <% end %>
             </span>
           </div>
