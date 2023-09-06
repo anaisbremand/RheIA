@@ -3,7 +3,7 @@ require 'json'
 require 'open-uri'
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update publish destroy regenerate]
+  before_action :set_post, only: %i[show edit update publish destroy regenerate programmation]
 
   def new
     @post = Post.new
@@ -64,6 +64,16 @@ class PostsController < ApplicationController
     @post.description = description_from(ask_chatgpt(@post.prompt))
     if @post.save
       redirect_to post_path(@post)
+    end
+  end
+
+  def programmation
+    @programmation = Programmation.new
+    @programmation.post = @post
+    if @programmation.save
+      redirect_to posts_programmation_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
