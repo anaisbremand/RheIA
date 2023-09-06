@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["prompt", "text"]
 
   connect() {
-    console.log("Controller Stimulus bien démarré !");
 
   }
 

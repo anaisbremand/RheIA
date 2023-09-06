@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["textarea", "modif", "regen"]
 
   connect() {
-    console.log("toggle_controller.js prêt à toggle text area")
   }
 
   fireArea(event) {

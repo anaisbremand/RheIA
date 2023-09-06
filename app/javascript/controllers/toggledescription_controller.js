@@ -16,4 +16,8 @@ export default class extends Controller {
       span.classList.toggle("d-none");
     });
   }
+
+  disconnect() {
+    console.log("bien déconnecté");
+  }
 }
