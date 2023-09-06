@@ -1,0 +1,59 @@
+<div class="card carousel-card m-4">
+
+  <div class="topbar">
+
+    <div>
+      <%= image_tag "138893298.jpg", class:"icon" %>
+      <b><%= current_user.instagram %></b>
+    </div>
+
+    <%= render "layouts/instagram/threepoints" %>
+
+  </div>
+
+  <%= link_to post_path(post) do %>
+
+    <content select="img" style="max-width:max-content;">
+      <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
+
+        <div class="carousel-indicators">
+          <% if post.images.length > 1 %>
+
+            <% post.images.each_with_index do |photo, index| %>
+              <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
+            <% end %>
+
+          <% end %>
+        </div>
+
+        <div class="carousel-inner">
+
+          <% post.images.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+              <img src="<%=photo%>" alt="" class="crop custom-annexe">
+            </div>
+          <% end %>
+
+        </div>
+
+        <% if post.images.length > 1 %>
+          <%= render "layouts/instagram/btns_carousel" %>
+        <% end %>
+
+      </div>
+    </content>
+
+  <% end %>
+
+  <%= render "layouts/instagram/interactionsbtns" %>
+
+  <div class="textcontent ">
+    <b> <%= current_user.instagram %> </b>
+    <span style="display:inline;">
+      <%= post.description %>... plus
+    </span>
+  </div>
+
+  <%= link_to "🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel-draft milieu text-center" %>
+
+</div>
