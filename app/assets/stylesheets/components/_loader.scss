@@ -1,6 +1,5 @@
 .loader {
   position: absolute;
-  height: 100vh;
   background: #212529;
   padding: 0 10vmin;
 }
@@ -161,7 +160,7 @@
   animation-delay: 25s;
   animation-iteration-count: 1;
   margin-left: 30px;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 @keyframes flashy {
