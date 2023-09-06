@@ -18,7 +18,7 @@
           <li class="text-end"><%= link_to "Nouveau", new_post_path %></li>
           <li class="text-end"><%= link_to "Mes brouillons", posts_drafts_path %></li>
           <li class="text-end"><%= link_to "Mes publications", posts_historique_path%></li>
-          <li class="text-end"><%= link_to "Mes programmations", programmations_path %></li>
+          <li class="text-end"><%= link_to "Mes programmations", programmations_show_path %></li>
           <li class="text-end"><%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr ?" } %></li>
         </ul>
       </li>
