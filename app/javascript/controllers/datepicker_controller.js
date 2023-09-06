@@ -4,9 +4,12 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
 
   connect() {
-    // new flatpickr(this.element, {
-    //   // enableTime: true
 
-    // });
+    console.log("connecté!");
+    console.log(this.element.tagName);
+    flatpickr(this.element, {
+      enableTime: true
+
+    });
   }
 }

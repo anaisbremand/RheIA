@@ -4,12 +4,8 @@
 
 
   <div class = "w-50 mt-4">
-        <%= simple_form_for @programmation do |f| %>
-          <%= f.input :open_at,label: "Date de programmation", as: :string,
-                wrapper_html: { class: "mb-4" },
-                label_html: { class: "form-label text-secondary fw-bold" },
-                input_html: { data: { controller: "datepicker" } } %>
-          <%= f.input :close_at, label: "Heure de programmation", as: :time,
+        <%= simple_form_for @post, url: programme_post_path do |f| %>
+          <%= f.input :program,label: "Date de programmation", as: :string,
                 wrapper_html: { class: "mb-4" },
                 label_html: { class: "form-label text-secondary fw-bold" },
                 input_html: { data: { controller: "datepicker" } } %>
