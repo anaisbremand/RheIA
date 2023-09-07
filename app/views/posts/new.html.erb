@@ -14,7 +14,7 @@
         <h2 class="mt-4">Votre prochaine publication Instagram</h2>
         <div class = "w-75  px-4 mt-4">
           <%= simple_form_for @post do |f| %>
-            <%= f.input :prompt, label: "Description", placeholder: "Randonnée au sommet d'un volcan au Guatemala... Recette de mon dernier crumble aux pommes... Soirée entre amis au bord du feu...", input_html: { data: {action:"blur->ia-generator#blur", ia_generator_target:"prompt"} } %>
+            <%= f.input :prompt, label: "Sujet de votre post", placeholder: "Randonnée au sommet d'un volcan au Guatemala... Recette de mon dernier crumble aux pommes... Soirée entre amis au bord du feu...", input_html: { data: {action:"blur->ia-generator#blur", ia_generator_target:"prompt"} } %>
             <p class="d-none text-danger fst-italic", data-ia-generator-target="text" style="font-size: 12px;">le prompt est obligatoire</p>
 
             <div class=" d-flex justify-content-space-between pt-5 mt-4 form-new">
