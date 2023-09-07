@@ -61,8 +61,7 @@ class PostsController < ApplicationController
   end
 
   def programs
-    array = Post.all
-    @programmations = array.reject { |post| post.program == nil }
+    @programmations = Post.where.not(program: nil).order(program: :asc)
   end
 
   def regenerate
