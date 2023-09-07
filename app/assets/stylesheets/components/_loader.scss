@@ -1,5 +1,6 @@
 .loader {
   position: absolute;
+  height: 100%;
   background: #212529;
   padding: 0 10vmin;
 }
@@ -37,7 +38,7 @@
   color: #212529;
   font-size: 20px;
   margin-left: 2px;
-  margin-top: 60px;
+  margin-top: 40px;
   animation: flashy 3s linear infinite;
   animation-delay: 1s;
   animation-iteration-count: 1;
@@ -50,7 +51,7 @@
   animation-delay: 3s;
   animation-iteration-count: 1;
   margin-left: 10px;
-  margin-top: 90px;
+  margin-top: 70px;
 }
 
 .mot3 {
@@ -60,7 +61,7 @@
   animation-delay: 5s;
   animation-iteration-count: 1;
   margin-left: 20px;
-  margin-top: 120px;
+  margin-top: 100px;
 }
 
 .mot4 {
@@ -70,7 +71,7 @@
   animation-delay: 7s;
   animation-iteration-count: 1;
   margin-right: 5px;
-  margin-top: 150px;
+  margin-top: 130px;
 }
 
 .mot5 {
@@ -80,7 +81,7 @@
   animation-delay: 9s;
   animation-iteration-count: 1;
   margin-right: 10px;
-  margin-top: 190px;
+  margin-top: 100px;
 }
 
 .mot11 {
@@ -90,7 +91,7 @@
   animation-delay: 11s;
   animation-iteration-count: 1;
   margin-right: 5px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .mot6 {
