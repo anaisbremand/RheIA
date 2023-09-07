@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     # resources :programmations, only: [:show, :create, :new]
+    resources :pictures, only: [:create]
   end
 
   # resources :programmations, only: [:edit, :update, :index]

@@ -13,6 +13,7 @@
       <div class=" w-75 infos-card rounded-4 px-7 mt-4 d-flex flex-column align-items-center">
         <h2 class="mt-4">Votre prochaine publication Instagram</h2>
         <div class = "w-75  px-4 mt-4">
+
           <%= simple_form_for @post do |f| %>
             <%= f.input :prompt, label: "Sujet de votre post", placeholder: "Randonnée au sommet d'un volcan au Guatemala... Recette de mon dernier crumble aux pommes... Soirée entre amis au bord du feu...", input_html: { data: {action:"blur->ia-generator#blur", ia_generator_target:"prompt"} } %>
             <p class="d-none text-danger fst-italic", data-ia-generator-target="text" style="font-size: 12px;">le prompt est obligatoire</p>
@@ -25,13 +26,14 @@
                 <% end %>
               </div>
               <div class="form-photo">
-              <%= f.input :photos, as: :file, input_html: {multiple: true}, label: "Télécharger vos images (optionnel)" %>
+              <%= f.input :pictures, as: :file, input_html: {multiple: true}, label: "Télécharger vos images (optionnel)" %>
               </div>
             </div>
             <div class="text-center mt-5">
               <%= f.submit "Générer votre post", class:"button-valider mb-5 selector", "data-action":"click->loader#fire"%>
             </div>
           <% end %>
+          
         </div>
       </div>
     </div>

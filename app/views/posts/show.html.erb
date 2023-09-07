@@ -19,17 +19,18 @@
 
           <div class="form py-3 d-flex flex-wrap justify-content-center" data-controller="show-imgs">
 
-            <% @post.photos.each do |photo| %>
+            <% @post.pictures.each do |img| %>
               <div style="flex-basis:33%" class="p-1">
-                <%= cl_image_tag photo.key , class:"crop"%>
+                <%= cl_image_tag img.photo.url , class:"crop", data: { show_imgs_target: "image", src: img.photo.url } %>
               </div>
             <% end %>
 
-            <% @post.images.each do |photo| %>
-              <div style="flex-basis:33%" class="p-1">
-                <img data-show-imgs-target="image" data-src="<%= photo %>" alt="" class="crop">
-              </div>
-            <% end %>
+            <%# <% @post.images.each do |photo| %>
+              <%# <div style="flex-basis:33%" class="p-1">
+                <img data-show-imgs-target="image" data-src="<%= photo %>
+                <%# " alt="" class="crop">
+              </div> %>
+            <%# <% end %>
 
           </div>
 

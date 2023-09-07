@@ -6,6 +6,8 @@ ruby "3.1.2"
 gem "devise"
 
 gem "cloudinary"
+gem 'carrierwave'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7", ">= 7.0.7.2"

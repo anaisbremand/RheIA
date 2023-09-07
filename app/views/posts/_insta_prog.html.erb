@@ -14,8 +14,8 @@
 
         <div class="carousel-indicators">
 
-          <% if post.images.length > 1 %>
-            <% post.images.each_with_index do |photo, index| %>
+          <% if post.pictures.length > 1 %>
+            <% post.pictures.each_with_index do |photo, index| %>
               <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator">
               </div>
             <% end %>
@@ -25,15 +25,15 @@
 
         <div class="carousel-inner">
 
-          <% post.images.each_with_index do |photo, index| %>
+          <% post.pictures.each_with_index do |img, index| %>
               <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                <img src="<%=photo%>" alt="" class="crop custom-annexe">
+                <%= cl_image_tag img.photo.url, class:"crop custom-annexe" %>
               </div>
           <% end %>
 
         </div>
 
-        <%= render "layouts/instagram/btns_carousel" if post.images.length > 1 %>
+        <%= render "layouts/instagram/btns_carousel" if post.pictures.length > 1 %>
 
       </div>
 

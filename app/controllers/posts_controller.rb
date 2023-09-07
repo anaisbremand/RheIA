@@ -19,10 +19,13 @@ class PostsController < ApplicationController
     if @post.valid?
       @post.description = description_from(ask_chatgpt(@post.prompt))
       array_img = ask_dalle(ask_chatgpt(@post.prompt), @post.many_imgs)
+    end
+    if @post.save
+      create_pictures
       array_img.each do |img|
-        @post.images << img['url']
+        dalle_img = URI.open(img['url'])
+        @post.pictures.create(photo: dalle_img)
       end
-      @post.save
       redirect_to post_path(@post)
     else
       # Gestion des erreurs, par exemple réafficher le formulaire
@@ -82,15 +85,19 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:prompt, :description, :many_imgs, photos: [])
-  end
-
-  def program_params
-    params.require(:post).permit(:program)
+    params.require(:post).permit(:prompt, :description, :many_imgs)
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def create_pictures
+    photos = params.dig(:post, :pictures)
+    photos.reject!(&:blank?)
+    photos.each do |photo|
+      @post.pictures.create(photo: photo)
+    end
   end
 
   def better_prompt(prompt)
