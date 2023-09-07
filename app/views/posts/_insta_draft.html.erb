@@ -29,7 +29,7 @@
 
           <% post.pictures.each_with_index do |img, index| %>
             <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-              <%= cl_image_tag img.photo.url, class:"crop custom-annexe", data: { src: img.photo.url }%>
+              <%= cl_image_tag img.photo.url, class:"crop custom-annexe"%>
             </div>
           <% end %>
 
