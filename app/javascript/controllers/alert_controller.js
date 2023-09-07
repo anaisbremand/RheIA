@@ -15,8 +15,7 @@ export default class extends Controller {
     console.log("cucou")
   }
 
-  fetchDeletePost(event) {
-    const url = event.currentTarget.baseURI
+  #fetchDeletePost(url) {
     const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     fetch(url, {
       headers: {
@@ -29,8 +28,9 @@ export default class extends Controller {
   }
 
   initSweetalert(event) {
+    this.eventTarget = event.currentTarget.baseURI
     event.preventDefault(); // Prevent the form to be submited after the submit button has been clicked
-    this.fetchDeletePost(event)
+    // this.fetchDeletePost(event)
     Swal.fire({
       title: 'Etes-vous sûr de vouloir supprimer ce post?',
       icon: 'warning',
@@ -39,14 +39,14 @@ export default class extends Controller {
       cancelButtonColor: '#bc78bc',
       confirmButtonText: 'Yes, supprimer!'
     }).then((result) => {
+      console.log(result)
       if (result.isConfirmed) {
+        this.#fetchDeletePost(this.eventTarget)
+        window.location.href="/drafts"
+      } else {
         Swal.fire(
-          'Supprimé!',
-          'Votre post a été supprimé.',
-          'success'
-        ).then(() => {
-          window.location.href="/drafts"
-        });
+          'Ce post ne sera pas supprimé'
+        )
       }
     })
   }
