@@ -8,36 +8,30 @@
     <%= render "layouts/instagram/threepoints" %>
   </div>
 
-    <content select="img">
+  <content select="img">
+    <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
 
-      <div id="carouselExampleIndicators-<%= index %>"  class="carousel slide custom-annexe">
-
-        <div class="carousel-indicators">
-
-          <% if post.pictures.length > 1 %>
-            <% post.pictures.each_with_index do |photo, index| %>
-              <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator">
-              </div>
-            <% end %>
+      <div class="carousel-indicators">
+        <% if post.pictures.length > 1 %>
+          <% post.pictures.each_with_index do |photo, i| %>
+            <div data-bs-slide-to="<%=i%>" class="<%= i == 0 ? "active" : "" %> rounded-circle card-indicator">
+            </div>
           <% end %>
-
-        </div>
-
-        <div class="carousel-inner">
-
-          <% post.pictures.each_with_index do |img, index| %>
-              <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                <%= cl_image_tag img.photo.url, class:"crop custom-annexe", data: { src: img.photo.url }%>
-              </div>
-          <% end %>
-
-        </div>
-
-        <%= render "layouts/instagram/btns_carousel" if post.pictures.length > 1 %>
-
+        <% end %>
       </div>
 
-    </content>
+      <div class="carousel-inner">
+        <% post.pictures.each_with_index do |img, i| %>
+            <div class="carousel-item <%= i == 0 ? "active" : "" %>">
+              <%= cl_image_tag img.photo.url, class:"crop custom-annexe", data: { src: img.photo.url }%>
+            </div>
+        <% end %>
+      </div>
+
+      <%= render "layouts/instagram/btns_carousel_multi", index: index if post.pictures.length > 1 %>
+
+    </div>
+  </content>
 
   <%= render "layouts/instagram/interactionsbtns" %>
 
@@ -45,14 +39,14 @@
     <b> <%= current_user.instagram %> </b>
 
     <span style="display:inline;" data-action="click->toggledescription#fireplus">
-      <span data-toggledescription-target="description">
+      <span data-toggledescription-target="description" style="cursor:pointer;">
         <% if post.description.size > 64 %>
           <%= post.description[0..64] %><span style="color: grey;">...plus</span>
         <% else %>
           <%= post.description %>
         <% end %>
       </span>
-      <span data-toggledescription-target="plus" class="d-none"><%= post.description %></span>
+      <span data-toggledescription-target="plus" class="d-none" style="cursor:pointer;"><%= post.description %></span>
     </span>
 
   </div>

@@ -5,7 +5,6 @@ require 'open-uri'
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update publish destroy regenerate programmation]
 
-
   def new
     @post = Post.new
   end
@@ -23,8 +22,7 @@ class PostsController < ApplicationController
     if @post.save
       create_pictures
       array_img.each do |img|
-        dalle_img = URI.open(img['url'])
-        @post.pictures.create(photo: dalle_img)
+        @post.pictures.create(photo: URI.open(img['url']))
       end
       redirect_to post_path(@post)
     else
@@ -52,7 +50,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to drafts_path
+    redirect_to posts_drafts_path
   end
 
   def drafts
