@@ -12,23 +12,23 @@
             <content select="img" style="max-width:max-content;">
           <div id="carouselExampleIndicators"  class="carousel slide custom">
             <div class="carousel-indicators">
-              <% if post.images.length > 1 %>
-                <% post.images.each_with_index do |photo, index| %>
+              <% if post.pictures.length > 1 %>
+                <% post.pictures.each_with_index do |photo, index| %>
                   <div data-bs-target="#carouselExampleIndicators-<%=index%>" data-bs-slide-to="<%=index%>" class="<%= index == 0 ? "active" : "" %> rounded-circle card-indicator"></div>
                 <% end %>
               <% end %>
             </div>
 
             <div class="carousel-inner" data-controller="show-imgs">
-              <% post.images.each_with_index do |photo, index| %>
+              <% post.pictures.each_with_index do |img, index| %>
                 <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-                  <%# <%= cl_image_tag photo.key , class:"crop custom"%>
-                  <img data-show-imgs-target="image" data-src="<%= photo %>" alt="" class="crop">
+                  <%= cl_image_tag img.photo.url , class:"crop", data: { show_imgs_target: "image", src: img.photo.url } %>
                 </div>
               <% end %>
+
             </div>
             </canvas>
-          <% if post.images.length > 1 %>
+          <% if post.pictures.length > 1 %>
 
             <%= render "layouts/instagram/btns_carousel" %>
 
