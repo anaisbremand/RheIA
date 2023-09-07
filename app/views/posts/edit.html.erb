@@ -1,18 +1,17 @@
-<h1> Programmer votre prochain post Instagram</h1>
+<h1 class="text-center my-5"> Programmer votre prochain post Instagram</h1>
 
-<div>
-
-
-  <div class = "w-50 mt-4">
+<div id="container" class="py-5">
+<div class="d-flex justify-content-center base infos-card w-50 mx-auto">
+  <div class = "w-50 mt-4 text-center">
         <%= simple_form_for @post, url: programme_post_path do |f| %>
           <%= f.input :program,label: "Date de programmation", as: :string,
                 wrapper_html: { class: "mb-4" },
-                label_html: { class: "form-label text-secondary fw-bold" },
+                label_html: { class: "form-label text-secondary text-center" },
                 input_html: { data: { controller: "datepicker" } } %>
           <div class="text-center mt-4">
-          <%= f.submit "Programmer votre post", class:"button-valider mt-3"%>
+          <%= f.submit "Programmer votre post", class:"button-valider-prog text-center my-3"%>
           </div>
           <% end %>
-        </div>
-
+   </div>
+</div>
 </div>
