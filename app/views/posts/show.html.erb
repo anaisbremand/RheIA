@@ -17,13 +17,22 @@
       <div class="update-img-text infos-card my-5 px-5 pt-3">
         <div class="form text-center py-3">
 
-          <div class="form py-3 d-flex flex-wrap justify-content-center">
+          <div class="form py-3 d-flex flex-wrap justify-content-center" data-controller="show-imgs">
+
+            <% @post.photos.each do |photo| %>
+              <div style="flex-basis:33%" class="p-1">
+                <%= cl_image_tag photo.key , class:"crop"%>
+              </div>
+            <% end %>
+
             <% @post.images.each do |photo| %>
               <div style="flex-basis:33%" class="p-1">
-                <img src="<%=photo%>" alt="" class="crop">
+                <img data-show-imgs-target="image" data-src="<%= photo %>" alt="" class="crop">
               </div>
-            <%end%>
+            <% end %>
+
           </div>
+
 
           <div class="p-3" data-controller="toggle">
 
@@ -33,7 +42,7 @@
 
             <div class="d-flex justify-content-center mt-3 flex-wrap">
 
-              <button style="flex-basis:47%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
+              <button style="flex-basis:38%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
                 Modifier ma description ✏️
               </button>
                 <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
@@ -55,6 +64,7 @@
           </div>
 
         </div>
+
       </div>
     </div>
 
