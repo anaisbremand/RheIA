@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 import flatpickr from "flatpickr";
 
+
 export default class extends Controller {
 
   connect() {
@@ -8,7 +9,8 @@ export default class extends Controller {
     console.log("connecté!");
     console.log(this.element.tagName);
     flatpickr(this.element, {
-      enableTime: true
+      enableTime: true,
+      locale: "fr",
 
     });
   }

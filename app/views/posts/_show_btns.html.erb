@@ -1,5 +1,19 @@
 <div style="flex-basis:30%">
-  <%= link_to "Supprimer 🗑️", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre post ?"}, class:"button-cancel" %>
+  <%# <%= link_to "Supprimer 🗑️", post_path(post),
+            data: {
+            controller: "alert",
+            action: "click->alert#initSweetalert"
+          }, turbo_method: :delete
+  %>
+  <%= simple_form_for @post,
+            data: {
+            controller: "alert",
+            action: "submit->alert#initSweetalert"
+          }, method: :delete do |f|
+
+   %>
+     <%= f.submit "Supprimer", class:"button-cancel" %>
+   <% end %>
 </div>
 
 <div style="flex-basis:60%" class="text-end">
