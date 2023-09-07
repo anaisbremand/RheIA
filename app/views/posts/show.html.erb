@@ -17,13 +17,22 @@
       <div class="update-img-text infos-card my-5 px-5 pt-3">
         <div class="form text-center py-3">
 
-          <div class="form py-3 d-flex flex-wrap justify-content-center">
+          <div class="form py-3 d-flex flex-wrap justify-content-center" data-controller="show-imgs">
+
+            <% @post.photos.each do |photo| %>
+              <div style="flex-basis:33%" class="p-1">
+                <%= cl_image_tag photo.key , class:"crop"%>
+              </div>
+            <% end %>
+
             <% @post.images.each do |photo| %>
               <div style="flex-basis:33%" class="p-1">
-                <img src="<%=photo%>" alt="" class="crop" loading="lazy">
+                <img data-show-imgs-target="image" data-src="<%= photo %>" alt="" class="crop">
               </div>
-            <%end%>
+            <% end %>
+
           </div>
+
 
           <div class="p-3" data-controller="toggle">
 
