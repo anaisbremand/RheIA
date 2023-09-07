@@ -1,11 +1,9 @@
 <div style="flex-basis:30%">
-
   <%= simple_form_for @post,
             data: {
             controller: "alert",
             action: "submit->alert#initSweetalert"
           }, method: :delete do |f|
-
    %>
      <%= f.submit "Supprimer 🗑️", class:"button-cancel" %>
    <% end %>

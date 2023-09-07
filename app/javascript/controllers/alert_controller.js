@@ -42,12 +42,15 @@ export default class extends Controller {
       console.log(result)
       if (result.isConfirmed) {
         this.#fetchDeletePost(this.eventTarget)
-        window.location.href="/drafts"
+        window.setTimeout(() => {
+          window.location.href="/drafts"
+        }, 100)
       } else {
         Swal.fire(
           'Ce post ne sera pas supprimé'
         )
       }
+
     })
   }
 
