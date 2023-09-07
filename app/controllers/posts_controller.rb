@@ -52,7 +52,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to drafts_path
+    redirect_to posts_drafts_path
+    raise
   end
 
   def drafts
@@ -129,8 +130,13 @@ class PostsController < ApplicationController
     url = "https://api.openai.com/v1/images/generations"
     payload = { prompt: img_from(prompt), n: many_imgs, size: "512x512" }.to_json
     headers = { Authorization: "Bearer #{ENV.fetch('OPENAI_TOKEN')}", 'Content-Type': 'application/json' }
-    response = RestClient.post(url, payload, headers)
-    reponse_dalle = JSON.parse(response.body)
-    return reponse_dalle['data']
+    begin
+      response = RestClient.post(url, payload, headers)
+      reponse_dalle = JSON.parse(response.body)
+      return reponse_dalle['data']
+      # Votre code pour gérer la réponse réussie (par exemple, code 200)
+    rescue
+      render :bad_request
+    end
   end
 end
