@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_drafts_path
+    redirect_to drafts_path
   end
 
   def drafts
