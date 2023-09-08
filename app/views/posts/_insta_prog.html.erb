@@ -51,7 +51,13 @@
 
   </div>
 <div class="d-flex justify-content-center my-3 align-items-end">
-  <%= post.program.strftime("%A %d %b %Y à %H:%M:%S")%>
+
+  <div class="d-flex flex-column align-items-center">
+  <p class="text-center"><%= t('date.day_names')[post.program.wday] %> <%= post.program.strftime("%d %B %Y")%></p>
+
+  <p class="text-center"><%= post.program.strftime("%H:%M") %></p>
+</div>
+
 </div>
 
 </div>

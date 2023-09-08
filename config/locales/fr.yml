@@ -1,0 +1,10 @@
+fr:                            # Niveau 1 : La clé 'fr' est au niveau 1
+  date:                        # Niveau 2 : La clé 'date' est au niveau 2
+    day_names:                 # Niveau 3 : La clé 'day_names' est au niveau 3
+      - Dimanche               # Niveau 4 : La première entrée de la liste est au niveau 4
+      - Lundi                  # Niveau 4 : La deuxième entrée de la liste est au niveau 4
+      - Mardi                  # Niveau 4 : La troisième entrée de la liste est au niveau 4
+      - Mercredi               # Niveau 4 : La quatrième entrée de la liste est au niveau 4
+      - Jeudi                  # Niveau 4 : La cinquième entrée de la liste est au niveau 4
+      - Vendredi               # Niveau 4 : La sixième entrée de la liste est au niveau 4
+      - Samedi                 # Niveau 4 : La septième entrée de la liste est au niveau 4
