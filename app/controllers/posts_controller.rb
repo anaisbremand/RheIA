@@ -79,7 +79,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   private
 
   def post_params
@@ -127,13 +126,8 @@ class PostsController < ApplicationController
     url = "https://api.openai.com/v1/images/generations"
     payload = { prompt: img_from(prompt), n: many_imgs, size: "512x512" }.to_json
     headers = { Authorization: "Bearer #{ENV.fetch('OPENAI_TOKEN')}", 'Content-Type': 'application/json' }
-    begin
-      response = RestClient.post(url, payload, headers)
-      reponse_dalle = JSON.parse(response.body)
-      return reponse_dalle['data']
-      # Votre code pour gérer la réponse réussie (par exemple, code 200)
-    rescue
-      render :bad_request
-    end
+    response = RestClient.post(url, payload, headers)
+    reponse_dalle = JSON.parse(response.body)
+    return reponse_dalle['data']
   end
 end
