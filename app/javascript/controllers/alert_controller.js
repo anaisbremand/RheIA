@@ -32,12 +32,12 @@ export default class extends Controller {
     event.preventDefault(); // Prevent the form to be submited after the submit button has been clicked
     // this.fetchDeletePost(event)
     Swal.fire({
-      title: 'Etes-vous sûr de vouloir supprimer ce post?',
+      title: 'Etes-vous sûr de vouloir supprimer ce post ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#e4c8e41',
       cancelButtonColor: '#bc78bc',
-      confirmButtonText: 'Yes, supprimer!'
+      confirmButtonText: 'Oui, supprimer !'
     }).then((result) => {
       console.log(result)
       if (result.isConfirmed) {
