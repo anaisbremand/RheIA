@@ -1,24 +1,24 @@
-<div class="d-flex">
+<main class="d-flex">
 
   <%= render "layouts/dashboard" %>
-  <div class="container infos-card rounded-4 p-5 d-flex flex-column align-items-center">
 
-    <h1>Mes brouillons </h1>
-    <div class = "d-flex f-row">
+  <section class="container">
 
-      <div class="grid">
-        <% @drafts.each_with_index do |post, index| %>
+    <h1 class='text-center'>Mes brouillons</h1>
+    <div class="row justify-content-center">
+      <% @drafts.each_with_index do |post, index| %>
+        <div class="col-12 col-lg-4 d-flex justify-content-center">
           <%= render "insta_draft", post: post, index: index %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
     </div>
 
-    <div class="text-center column mx-5">
+    <div class="text-center mx-5">
       <%= link_to "Générer un autre post", new_post_path, class:"button-valider-historique my-3 px-3" %>
       <%= link_to "Voir mon historique", posts_historique_path, class:"button-annexe-historique" %>
     </div>
+  </section>
 
-  </div>
 
-</div>
+</main>

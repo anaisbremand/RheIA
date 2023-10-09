@@ -1,59 +1,60 @@
 <div data-controller="loader">
 
-  <nav class="breadcrumb infos-card" data-loader-target="breadcrumb">
-      <ul>
-          <li class="breadcrumb_active">Générateur de post &#10148</li>
-          <li class="breadcrumb_inactive">Modification &#10148</li>
-          <li class="breadcrumb_inactive">Publication</li>
-      </ul>
-  </nav>
+  <div class="breadcrumb infos-card mb-3" data-loader-target="breadcrumb">
+    <ul>
+      <li class="breadcrumb_active">Générateur de post &#10148</li>
+      <li class="breadcrumb_inactive">Modification &#10148</li>
+      <%# <li class="breadcrumb_inactive">Publication</li> %>
+    </ul>
+  </div>
 
-  <div id="container">
-    <div class="d-flex justify-content-center base" data-controller="ia-generator" data-loader-target="togglableElement">
-      <div class=" w-75 infos-card rounded-4 px-7 mt-4 d-flex flex-column align-items-center">
-        <h2 class="mt-4">Votre prochaine publication Instagram</h2>
-        <div class = "w-75  px-4 mt-4">
+  <div id="container" class='container' data-controller="ia-generator" data-loader-target="togglableElement">
+    <h2 class="text-center mb-3">Votre prochaine publication Instagram</h2>
 
-          <%= simple_form_for @post do |f| %>
+      <%= simple_form_for @post do |f| %>
+
+        <div class="row justify-content-center mb-3">
+          <div class="col-12">
             <%= f.input :prompt, label: "Sujet de votre post", placeholder: "Randonnée au sommet d'un volcan au Guatemala... Recette de mon dernier crumble aux pommes... Soirée entre amis au bord du feu...", input_html: { data: {action:"blur->ia-generator#blur", ia_generator_target:"prompt"} } %>
             <p class="d-none text-danger fst-italic", data-ia-generator-target="text" style="font-size: 12px;">le prompt est obligatoire</p>
-
-            <div class=" d-flex justify-content-space-between pt-5 mt-4 form-new">
-
-              <div class="form-group  d-flex flex-row">
-                <%= f.input :many_imgs, label: "Nombre d'images à générer (optionnel)" do %>
-                  <%= f.select :many_imgs, (1..4).to_a, prompt: 'choisissez un chiffre', class:"form-select" %>
-                <% end %>
-              </div>
-              <div class="form-photo">
-              <%= f.input :pictures, as: :file, input_html: {multiple: true}, label: "Télécharger vos images (optionnel)" %>
-              </div>
-            </div>
-            <div class="text-center mt-5">
-              <%= f.submit "Générer votre post", class:"button-valider mb-5 selector", "data-action":"click->loader#fire"%>
-            </div>
-          <% end %>
-
+          </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <%= f.input :many_imgs, label: "Nombre d'images à générer (optionnel)" do %>
+              <%= f.select :many_imgs, (1..4).to_a, prompt: 'choisissez un chiffre', class:"form-select" %>
+            <% end %>
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <%= f.input :pictures, as: :file, input_html: { multiple: true }, label: "Télécharger vos images (optionnel)" %>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <%= f.submit "Générer votre post", class:"button-valider btn mb-5 selector", "data-action":"click->loader#fire"%>
+        </div>
+
+      <% end %>
+
+  </div>
+
+  <div class="d-none loader" data-loader-target="chargement">
+
+    <div class="titre">
+      <span class="lettre">C</span>
+      <span class="lettre">H</span>
+      <span class="lettre">A</span>
+      <span class="lettre">R</span>
+      <span class="lettre">G</span>
+      <span class="lettre">E</span>
+      <span class="lettre">M</span>
+      <span class="lettre">E</span>
+      <span class="lettre">N</span>
+      <span class="lettre">T</span>
     </div>
 
-    <div class="d-none loader" data-loader-target="chargement">
-
-      <div class="titre">
-        <span class="lettre">C</span>
-        <span class="lettre">H</span>
-        <span class="lettre">A</span>
-        <span class="lettre">R</span>
-        <span class="lettre">G</span>
-        <span class="lettre">E</span>
-        <span class="lettre">M</span>
-        <span class="lettre">E</span>
-        <span class="lettre">N</span>
-        <span class="lettre">T</span>
-      </div>
-
-    </div>
   </div>
 
 </div>

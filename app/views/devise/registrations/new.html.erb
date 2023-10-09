@@ -1,8 +1,6 @@
-<div class="body-form my-5 ">
-  <div class="formulaire infos-card rounded-4 p-5 w-75">
-    <div class="form-text">
-    <h2 class="enonce my-3 py-3"><h2>Inscription</h2>
-    </div>
+<div class='container d-flex justify-content-center'>
+  <div class="p-5 col-md-8 col-12">
+    <h2 class="text-center">Inscription</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
@@ -21,6 +19,7 @@
                     input_html: { autocomplete: "new-password" } %>
         <%= f.input :instagram,
                     required: true,
+
                     input_html: { placeholder: "Mettre mon nom instagram ici" } %>
       </div>
 

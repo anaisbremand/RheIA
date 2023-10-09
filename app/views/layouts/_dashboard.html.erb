@@ -1,4 +1,4 @@
-<div class="w-25 bg-dark">
+<div id='dashboard' class="w-25 bg-dark">
   <div class="d-flex flex-column menu justify-content-around">
     <p class="<%= controller.action_name == "drafts" ? "special-color" : "" %>"><%= link_to "Mes posts sauvegardés", posts_drafts_path %> </p>
     <p class="<%= controller.action_name == "historique" ? 'special-color' : "" %>"><%= link_to "Mon historique de post", posts_historique_path %> </p>

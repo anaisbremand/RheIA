@@ -1,86 +1,64 @@
-<div class="breadcrumb infos-card">
+<%# <div class="breadcrumb infos-card">
     <ul>
-        <li class="breadcrumb_inactive">Générateur de post &#10148</li>
-        <li class="breadcrumb_active">Modification &#10148</li>
-        <li class="breadcrumb_inactive">Publication</li>
+      <li class="breadcrumb_inactive">Générateur de post &#10148</li>
+      <li class="breadcrumb_active">Modification &#10148</li>
+      <li class="breadcrumb_inactive">Publication</li>
     </ul>
-</div>
+</div> %>
 
+<main id='show' class="row">
 
-<div id="container">
-  <div class="container-show d-flex flex-nowrap">
-    <div class="container-prompt-img-description prompt w-50 px-3 py-3">
-      <h4 class="text-center py-3">
-        Votre post
-      </h4>
+  <section id='post' class='col-12 col-md-6 p-5'>
+    <h4 class='text-center mb-3'>Votre post</h4>
 
-      <div class="update-img-text infos-card my-5 px-5 pt-3">
-        <div class="form text-center py-3">
-
-          <div class="form py-3 d-flex flex-wrap justify-content-center" data-controller="show-imgs">
-
-            <% @post.pictures.each do |img| %>
-              <div style="flex-basis:33%" class="p-1">
-                <%= cl_image_tag img.photo.url , class:"crop", data: { show_imgs_target: "image", src: img.photo.url } %>
-              </div>
-            <% end %>
-
-          </div>
-
-
-          <div class="p-3" data-controller="toggle">
-
-            <div class="post-description-modifiable">
-              <p><%= @post.description %></p>
-            </div>
-
-            <div class="d-flex justify-content-center mt-3 flex-wrap">
-
-              <button style="flex-basis:42%" data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe m-2">
-                Modifier ma description ✏️
-              </button>
-                <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off', style: "flex-basis:40%" } do |f| %>
-                  <%= f.submit "Recréer une description 🤔", class:"button-annexe m-2", data: { toggle_target: "regen" } %>
-                <% end %>
-
-              <div style="flex-basis:100%" data-toggle-target="textarea" class="d-none">
-                <%= simple_form_for @post  do |f| %>
-                  <%= f.input :description, label: false, placeholder: @post.description, input_html: { id:"modif-description" }%>
-                  <div class="d-flex justify-content-around">
-                    <button data-action="click->toggle#cancelArea" class="button-cancel" style= "flex-basis:40%">
-                      Annuler ❌
-                    </button>
-                    <%= f.submit "Modifier ✔️", class: "button-annexe", style: "flex-basis:40%" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-
+    <div id='img-post' class='grid' data-controller="show-imgs">
+      <% @post.pictures.each do |img| %>
+        <div>
+          <%= cl_image_tag img.photo.url , class:"crop", data: { show_imgs_target: "image", src: img.photo.url } %>
         </div>
+      <% end %>
+    </div>
 
+    <p id='description'>
+      <%= @post.description %>
+    </p>
+
+    <div data-controller="toggle">
+
+      <div class="d-flex justify-content-center flex-wrap">
+
+        <button data-action="click->toggle#fireArea" data-toggle-target="modif" class="button-annexe">
+          Modifier ma description ✏️
+        </button>
+        <%= form_with url: regenerate_path(@post), method: "PATCH", html: { autocomplete: 'off'} do |f| %>
+          <%= f.submit "Recréer une description 🤔", class:"button-annexe", data: { toggle_target: "regen" } %>
+        <% end %>
+
+        <div style="flex-basis:100%" data-toggle-target="textarea" class="d-none">
+          <%= simple_form_for @post  do |f| %>
+            <%= f.input :description, label: false, placeholder: @post.description, input_html: { id:"modif-description" }%>
+            <div class="d-flex justify-content-around">
+              <button data-action="click->toggle#cancelArea" class="button-cancel" style= "flex-basis:40%">
+                Annuler ❌
+              </button>
+              <%= f.submit "Modifier ✔️", class: "button-annexe", style: "flex-basis:40%" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 
+  </section>
 
-    <div class="container-instagram w-50 p-3">
-
-
-
-    <h4 class="text-center py-3">
-      Vue Instagram
-    </h4>
-
-
-    <div class="d-flex align-items-center flex-column py-3">
+  <section id='view-insta' class='col-12 col-md-6 p-5'>
+    <h4 class='text-center mb-3'>Vue Instagram</h4>
+    <div class='d-flex justify-content-center'>
       <%= render "insta_show", post: @post %>
-      <div class="container-buttons d-flex justify-content-evenly flex-wrap py-3">
+    </div>
+      <div class="container-buttons mt-3">
         <%= render "show_btns", post: @post %>
       </div>
-    </div>
 
-  </div>
+  </section>
 
-</div>
-
-</div>
+</main>
